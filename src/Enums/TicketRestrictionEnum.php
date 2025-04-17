@@ -12,7 +12,6 @@ enum TicketRestrictionEnum: string
     case SATURDAY_LIMIT = 'saturday_limit';
     case SUNDAY_LIMIT = 'sunday_limit';
 
-
     public function getDayFromRestrictionName(): int
     {
         return match ($this) {
@@ -26,5 +25,4 @@ enum TicketRestrictionEnum: string
         };
 
     }
-
 }

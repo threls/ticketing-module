@@ -14,9 +14,7 @@ class AddOrUpdateToCartDto extends IdentifiableCartData
         #[RequiredWithout(['session_id', 'cart_id'])]
         ?int $userId,
         public UpdateCartItemDto $item
-    )
-    {
+    ) {
         parent::__construct($cartId, $sessionId, $userId);
     }
-
 }

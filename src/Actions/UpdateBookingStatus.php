@@ -17,5 +17,4 @@ class UpdateBookingStatus
         $booking->update(['status' => $status->value]);
 
     }
-
 }

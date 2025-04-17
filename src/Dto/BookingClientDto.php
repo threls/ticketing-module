@@ -15,8 +15,5 @@ class BookingClientDto extends Data
         public string $email,
         public ?string $phone,
         public ?string $address,
-    )
-    {
-    }
-
+    ) {}
 }

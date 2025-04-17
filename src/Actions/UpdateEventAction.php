@@ -19,5 +19,4 @@ class UpdateEventAction
 
         return $dto->event->fresh();
     }
-
 }

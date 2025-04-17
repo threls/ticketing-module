@@ -14,5 +14,4 @@ class DeleteTicketAction
         $ticket->delete();
 
     }
-
 }

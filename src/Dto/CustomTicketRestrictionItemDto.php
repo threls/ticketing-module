@@ -14,7 +14,5 @@ class CustomTicketRestrictionItemDto extends Data
         public int $ticketRestrictionId,
         public TicketRestrictionEnum $key,
         public string $value,
-    )
-    {
-    }
+    ) {}
 }

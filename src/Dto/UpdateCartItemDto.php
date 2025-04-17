@@ -15,8 +15,5 @@ class UpdateCartItemDto extends Data
         public readonly string $itemableType,
         #[Min(0)]
         public readonly int $quantity,
-    )
-    {
-    }
-
+    ) {}
 }

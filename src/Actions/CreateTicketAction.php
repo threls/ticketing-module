@@ -10,14 +10,14 @@ use Threls\ThrelsTicketingModule\Models\VatRate;
 class CreateTicketAction
 {
     protected CreateTicketDto $createTicketDto;
+
     protected Event $event;
+
     protected Ticket $ticket;
 
     public function __construct(
         protected readonly ExtractVatAction $extractVatAction,
-    )
-    {
-    }
+    ) {}
 
     public function execute(CreateTicketDto $dto): Ticket
     {
@@ -54,5 +54,4 @@ class CreateTicketAction
         $this->ticket->restrictions()->createMany($this->createTicketDto->restrictions->toArray());
 
     }
-
 }

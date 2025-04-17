@@ -2,7 +2,4 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-class UpdateSettingsAction
-{
-
-}
+class UpdateSettingsAction {}

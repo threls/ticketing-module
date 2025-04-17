@@ -3,7 +3,6 @@
 namespace Threls\ThrelsTicketingModule\Actions;
 
 use Threls\ThrelsTicketingModule\Models\Event;
-use Threls\ThrelsTicketingModule\Models\Ticket;
 
 class DeleteEventAction
 {
@@ -14,5 +13,4 @@ class DeleteEventAction
         $event->delete();
 
     }
-
 }

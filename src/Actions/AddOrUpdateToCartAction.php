@@ -2,7 +2,6 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-
 use Binafy\LaravelCart\Models\Cart;
 use Threls\ThrelsTicketingModule\Dto\AddOrUpdateToCartDto;
 use Threls\ThrelsTicketingModule\Dto\CartDto;
@@ -17,9 +16,7 @@ class AddOrUpdateToCartAction
     public function __construct(
         protected readonly CreateNewCartAction $createNewCartAction,
         protected readonly GetCartByIdentifiableAction $getCartByIdentifiableAction
-    )
-    {
-    }
+    ) {}
 
     public function execute(AddOrUpdateToCartDto $addToCartDto): CartDto
     {
@@ -37,7 +34,7 @@ class AddOrUpdateToCartAction
     {
         $cart = $this->getCartByIdentifiableAction->execute($this->addToCartDto);
 
-        if (!$cart) {
+        if (! $cart) {
             $cart = $this->createNewCartAction->execute(CreateNewCartDto::from([
                 'sessionId' => $this->addToCartDto->sessionId,
                 'userId' => $this->addToCartDto->userId,
@@ -49,21 +46,18 @@ class AddOrUpdateToCartAction
 
     protected function updateCartItem(): void
     {
-        if ($this->addToCartDto->item->quantity == 0){
+        if ($this->addToCartDto->item->quantity == 0) {
             $this->cart->items()->where('itemable_id', $this->addToCartDto->item->itemableId)?->delete();
-        }
-        else
-        {
+        } else {
             $this->cart->items()->updateOrCreate(
                 [
                     'itemable_id' => $this->addToCartDto->item->itemableId,
                     'itemable_type' => $this->addToCartDto->item->itemableType,
                 ],
                 [
-                    'quantity' => $this->addToCartDto->item->quantity
+                    'quantity' => $this->addToCartDto->item->quantity,
                 ]
             );
         }
     }
-
 }

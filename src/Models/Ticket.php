@@ -47,5 +47,4 @@ class Ticket extends Model implements Cartable
     {
         return $this->price->getAmount()->toFloat();
     }
-
 }

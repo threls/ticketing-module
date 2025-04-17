@@ -9,7 +9,9 @@ use Threls\ThrelsTicketingModule\Models\Event;
 class CreateEventAction
 {
     protected Event $event;
+
     protected CreateEventDto $createEventDto;
+
     public function execute(CreateEventDto $dto): Event
     {
         $this->createEventDto = $dto;
@@ -23,12 +25,11 @@ class CreateEventAction
     protected function createEvent()
     {
         $this->event = Event::create([
-           'name' => $this->createEventDto->name,
-           'slug' => Str::slug($this->createEventDto->name),
-           'description' => $this->createEventDto->description,
-           'status' => $this->createEventDto->status,
+            'name' => $this->createEventDto->name,
+            'slug' => Str::slug($this->createEventDto->name),
+            'description' => $this->createEventDto->description,
+            'status' => $this->createEventDto->status,
         ]);
 
     }
-
 }

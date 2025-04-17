@@ -13,5 +13,4 @@ class DeleteCartAction
         $cart->delete();
 
     }
-
 }

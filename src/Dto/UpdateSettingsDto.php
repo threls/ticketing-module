@@ -6,8 +6,5 @@ use Spatie\LaravelData\Data;
 
 class UpdateSettingsDto extends Data
 {
-    public function __construct()
-    {
-    }
-
+    public function __construct() {}
 }

@@ -17,8 +17,5 @@ class BookingItemDto extends Data
         public int $amount,
         public string $currency,
         public int $vatAmount,
-    )
-    {
-    }
-
+    ) {}
 }

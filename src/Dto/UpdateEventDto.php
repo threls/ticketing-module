@@ -16,8 +16,5 @@ class UpdateEventDto extends Data
         public string $name,
         public string $description,
         public EventStatusEnum $status,
-    )
-    {
-    }
-
+    ) {}
 }
