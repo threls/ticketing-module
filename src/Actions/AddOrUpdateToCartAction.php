@@ -47,7 +47,7 @@ class AddOrUpdateToCartAction
     protected function updateCartItem(): void
     {
         if ($this->addToCartDto->item->quantity == 0) {
-            $this->cart->items()->where('itemable_id', $this->addToCartDto->item->itemableId)?->delete();
+            $this->cart->items()->where('itemable_id', $this->addToCartDto->item->itemableId)->delete();
         } else {
             $this->cart->items()->updateOrCreate(
                 [

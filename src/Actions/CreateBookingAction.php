@@ -98,7 +98,7 @@ class CreateBookingAction
 
     protected function createBookingItems(): static
     {
-        $this->cart->items()->each(function (CartItem $item): void {
+        $this->cart->items->each(function (CartItem $item): void {
 
             $itemable = $item->itemable;
 
