@@ -12,5 +12,4 @@ class GenerateTicketPDFsAction
         GenerateTicketPDFsJob::dispatch($booking);
 
     }
-
 }

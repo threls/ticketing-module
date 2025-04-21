@@ -15,14 +15,14 @@ class GenerateBookingQRCodesAction
     {
         $this->booking = $booking;
 
-        $booking->items->each(function (BookingItem $item) use ($booking) {
+        $booking->items->each(function (BookingItem $item) {
             $this->generateQRCode($item);
         });
     }
 
     protected function generateQRCode(BookingItem $item): void
     {
-        $writer = new PngWriter();
+        $writer = new PngWriter;
 
         $qrCode = new QrCode(
             data: $item->reference_number,
@@ -39,5 +39,4 @@ class GenerateBookingQRCodesAction
         fclose($stream);
 
     }
-
 }

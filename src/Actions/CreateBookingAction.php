@@ -111,7 +111,7 @@ class CreateBookingAction
                 'vat_amount' => property_exists($itemable, 'vat_amount') ? $itemable->vat_amount : null,
                 'vat_id' => property_exists($itemable, 'vat_id') ? $itemable->vat_id : null,
                 'pax_number' => property_exists($itemable, 'pax_number') ? $itemable->pax_number : null,
-                'reference_number' => strtoupper(Str::substr(trim($itemable->event->name),0,3) ). '-'. Str::ulid()
+                'reference_number' => strtoupper(Str::substr(trim($itemable->event->name), 0, 3)).'-'.Str::ulid(),
             ]);
         });
 

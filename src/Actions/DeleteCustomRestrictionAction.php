@@ -12,5 +12,4 @@ class DeleteCustomRestrictionAction
         $restriction->delete();
 
     }
-
 }

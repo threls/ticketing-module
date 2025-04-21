@@ -14,9 +14,7 @@ class BookingConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public readonly BookingConfirmationMailDto $dto)
-    {
-    }
+    public function __construct(public readonly BookingConfirmationMailDto $dto) {}
 
     public function envelope(): Envelope
     {

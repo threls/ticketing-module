@@ -16,9 +16,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(public readonly Booking $booking)
-    {
-    }
+    public function __construct(public readonly Booking $booking) {}
 
     public function handle(): void
     {

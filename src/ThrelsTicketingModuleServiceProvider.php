@@ -28,9 +28,8 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
     public function packageRegistered()
     {
         $this->app['events']->listen(
-            BookingConfirmedEvent::class,GenerateQRCodesListener::class
+            BookingConfirmedEvent::class, GenerateQRCodesListener::class
         );
 
     }
-
 }

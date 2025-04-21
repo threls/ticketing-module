@@ -20,8 +20,5 @@ class BookingConfirmationMailDto extends Data
         public int $peopleNr,
         #[DataCollectionOf(Media::class)]
         public Collection $attachments,
-    )
-    {
-    }
-
+    ) {}
 }

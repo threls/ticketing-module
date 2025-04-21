@@ -19,8 +19,5 @@ class GenerateTicketPdfDto extends Data
         public Ticket $ticket,
         public BookingItem $item,
         public Media $qrCode,
-    )
-    {
-    }
-
+    ) {}
 }

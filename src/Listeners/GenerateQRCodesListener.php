@@ -8,9 +8,7 @@ use Threls\ThrelsTicketingModule\Events\BookingConfirmedEvent;
 
 class GenerateQRCodesListener implements ShouldQueue
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function handle(BookingConfirmedEvent $event): void
     {
