@@ -9,11 +9,15 @@ use Threls\ThrelsTicketingModule\Actions\CreateBookingAction;
 use Threls\ThrelsTicketingModule\Actions\CreateEventAction;
 use Threls\ThrelsTicketingModule\Actions\CreateTicketAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteCartAction;
+use Threls\ThrelsTicketingModule\Actions\DeleteCustomRestrictionAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteEventAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteTicketAction;
+use Threls\ThrelsTicketingModule\Actions\GenerateBookingQRCodesAction;
+use Threls\ThrelsTicketingModule\Actions\GenerateTicketPDFsAction;
 use Threls\ThrelsTicketingModule\Actions\GetCartAction;
 use Threls\ThrelsTicketingModule\Actions\RemoveFromCartAction;
 use Threls\ThrelsTicketingModule\Actions\UpdateBookingStatus;
+use Threls\ThrelsTicketingModule\Actions\UpdateCustomTicketRestrictionAction;
 use Threls\ThrelsTicketingModule\Actions\UpdateEventAction;
 use Threls\ThrelsTicketingModule\Actions\UpdateTicketAction;
 use Threls\ThrelsTicketingModule\Dto\AddCustomTicketRestrictionDto;
@@ -24,6 +28,7 @@ use Threls\ThrelsTicketingModule\Dto\CreateEventDto;
 use Threls\ThrelsTicketingModule\Dto\CreateTicketDto;
 use Threls\ThrelsTicketingModule\Dto\IdentifiableCartData;
 use Threls\ThrelsTicketingModule\Dto\RemoveFromCartDto;
+use Threls\ThrelsTicketingModule\Dto\UpdateCustomTicketRestrictionDto;
 use Threls\ThrelsTicketingModule\Dto\UpdateEventDto;
 use Threls\ThrelsTicketingModule\Dto\UpdateTicketDto;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
@@ -101,5 +106,25 @@ class ThrelsTicketingModule {
     public function addCustomTicketRestrictions(AddCustomTicketRestrictionDto $dto): void
     {
         app(AddCustomTicketRestrictionAction::class)->execute($dto);
+    }
+
+    public function updateCustomTicketRestrictions(UpdateCustomTicketRestrictionDto $dto): void
+    {
+        app(UpdateCustomTicketRestrictionAction::class)->execute($dto);
+    }
+
+    public function deleteCustomTicketRestriction(int $customRestrictionId): void
+    {
+        app(DeleteCustomRestrictionAction::class)->execute($customRestrictionId);
+    }
+
+    public function generateBookingQRCodes(Booking $booking): void
+    {
+        app(GenerateBookingQRCodesAction::class)->execute($booking);
+    }
+
+    public function generateTicketPdfs(Booking $booking): void
+    {
+        app(GenerateTicketPdfsAction::class)->execute($booking);
     }
 }

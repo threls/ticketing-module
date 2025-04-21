@@ -19,9 +19,12 @@
         "php": "^8.4",
         "binafy/laravel-cart": "^1.2",
         "brick/money": "^0.10.1",
+        "endroid/qr-code": "^6.0",
         "illuminate/contracts": "^10.0||^11.0||^12.0",
         "spatie/laravel-data": "^4.15",
-        "spatie/laravel-package-tools": "^1.16"
+        "spatie/laravel-medialibrary": "^11.12",
+        "spatie/laravel-package-tools": "^1.16",
+        "spatie/laravel-pdf": "^1.5"
     },
     "require-dev": {
         "laravel/pint": "^1.14",

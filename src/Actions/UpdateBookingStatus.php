@@ -4,6 +4,7 @@ namespace Threls\ThrelsTicketingModule\Actions;
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
+use Threls\ThrelsTicketingModule\Events\BookingConfirmedEvent;
 use Threls\ThrelsTicketingModule\Models\Booking;
 
 class UpdateBookingStatus
@@ -15,6 +16,10 @@ class UpdateBookingStatus
         }
 
         $booking->update(['status' => $status->value]);
+
+        if ($booking->status == BookingStatusEnum::CONFIRMED) {
+            BookingConfirmedEvent::dispatch($booking);
+        }
 
     }
 

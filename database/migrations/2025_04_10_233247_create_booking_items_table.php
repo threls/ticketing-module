@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->bigInteger('vat_amount');
             $table->integer('pax_number');
             $table->foreignId('vat_id')->constrained('vat_rates');
+            $table->string('reference_number')->unique();
             $table->timestamps();
             $table->softDeletes();
         });
