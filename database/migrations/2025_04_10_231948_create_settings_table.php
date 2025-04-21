@@ -8,12 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('ticketing_module_table', function (Blueprint $table) {
+        Schema::create('ticketing_module_settings', function (Blueprint $table) {
             $table->id();
-
-            // add fields
-
+            $table->string('key');
+            $table->string('value');
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('configurations');
     }
 };
