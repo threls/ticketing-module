@@ -14,9 +14,7 @@ class RemoveFromCartDto extends IdentifiableCartData
         #[RequiredWithout(['session_id', 'cart_id'])]
         ?int $userId,
         public int $cartItemId,
-    )
-    {
+    ) {
         parent::__construct($cartId, $sessionId, $userId);
     }
-
 }

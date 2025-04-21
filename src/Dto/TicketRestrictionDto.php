@@ -13,8 +13,5 @@ class TicketRestrictionDto extends Data
     public function __construct(
         public TicketRestrictionEnum $key,
         public string $value,
-    )
-    {
-    }
-
+    ) {}
 }

@@ -23,5 +23,4 @@ class CustomRestrictionItem extends Model
     {
         return $this->belongsTo(TIcketRestriction::class);
     }
-
 }

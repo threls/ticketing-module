@@ -2,7 +2,6 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
-
 use Spatie\LaravelData\Attributes\Validation\RequiredWithout;
 use Spatie\LaravelData\Data;
 
@@ -15,6 +14,5 @@ class IdentifiableCartData extends Data
         public readonly ?string $sessionId,
         #[RequiredWithout(['session_id', 'cart_id'])]
         public readonly ?int $userId,
-    ) {
-    }
+    ) {}
 }

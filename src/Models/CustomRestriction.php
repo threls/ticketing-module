@@ -24,5 +24,4 @@ class CustomRestriction extends Model
     {
         return $this->hasMany(CustomRestrictionItem::class);
     }
-
 }

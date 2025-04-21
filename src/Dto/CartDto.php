@@ -17,8 +17,5 @@ class CartDto extends Data
         public string $sessionId,
         #[DataCollectionOf(CartItemDto::class)]
         public Collection $items,
-    )
-    {
-    }
-
+    ) {}
 }

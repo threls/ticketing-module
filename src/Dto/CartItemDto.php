@@ -15,10 +15,7 @@ class CartItemDto extends Data
         public int $id,
         public Cartable $item,
         public int $quantity,
-    )
-    {
-    }
-
+    ) {}
 
     public static function fromModel(CartItem $cartItem): self
     {
@@ -30,5 +27,4 @@ class CartItemDto extends Data
 
         );
     }
-
 }

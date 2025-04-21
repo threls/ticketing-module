@@ -15,8 +15,5 @@ class CreateNewCartDto extends Data
         public readonly ?string $sessionId,
         #[RequiredWithout('session_id')]
         public readonly ?int $userId,
-    )
-    {
-    }
-
+    ) {}
 }

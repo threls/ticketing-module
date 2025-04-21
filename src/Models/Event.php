@@ -10,7 +10,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $guarded =['id'];
+    protected $guarded = ['id'];
 
     public function tickets(): HasMany
     {

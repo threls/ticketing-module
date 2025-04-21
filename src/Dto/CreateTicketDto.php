@@ -17,14 +17,12 @@ class CreateTicketDto extends Data
         public Event $event,
         public ?int $dependentOfId,
         public string $name,
-        public int $paxNumber = 1,
+        public int $paxNumber,
         public int $price,
         public string $currency,
         public int $vatId,
         public TicketStatusEnum $status,
         #[DataCollectionOf(TicketRestrictionDto::class)]
         public ?Collection $restrictions,
-    )
-    {
-    }
+    ) {}
 }

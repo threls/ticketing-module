@@ -11,5 +11,4 @@ class CartNotFoundException extends HttpException
     {
         parent::__construct(Response::HTTP_NOT_FOUND, 'Cart not found.');
     }
-
 }

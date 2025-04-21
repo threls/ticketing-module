@@ -18,8 +18,5 @@ class AddCustomTicketRestrictionDto extends Data
         public Carbon $toDate,
         #[DataCollectionOf(CustomTicketRestrictionItemDto::class)]
         public Collection $restrictions,
-    )
-    {
-    }
-
+    ) {}
 }

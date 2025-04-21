@@ -9,21 +9,17 @@ class GetCartByIdentifiableAction
 {
     public function execute(IdentifiableCartData $cartData): ?Cart
     {
-        if($cartData->cartId){
+        if ($cartData->cartId) {
             $cart = Cart::query()->where('id', $cartData->cartId)->first();
-        }
-        else if ($cartData->userId){
+        } elseif ($cartData->userId) {
             $cart = Cart::query()->where('user_id', $cartData->userId)->first();
-        }
-        else if ($cartData->sessionId){
+        } elseif ($cartData->sessionId) {
             $cart = Cart::query()->where('session_id', $cartData->sessionId)->first();
-        }
-        else{
+        } else {
             $cart = null;
         }
 
         return $cart;
 
     }
-
 }

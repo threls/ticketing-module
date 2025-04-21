@@ -12,9 +12,8 @@ class UpdateTicketAction
 
     public function __construct(
         protected readonly ExtractVatAction $extractVatAction,
-    )
-    {
-    }
+    ) {}
+
     public function execute(UpdateTicketDto $dto)
     {
         $this->dto = $dto;
@@ -54,5 +53,4 @@ class UpdateTicketAction
 
         $this->dto->ticket->restrictions()->whereNotIn('key', $this->dto->restrictions->pluck('key')->toArray())->delete();
     }
-
 }

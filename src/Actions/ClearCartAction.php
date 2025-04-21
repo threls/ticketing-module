@@ -10,15 +10,13 @@ class ClearCartAction
 {
     public function __construct(
         protected readonly GetCartByIdentifiableAction $getCartByIdentifiableAction
-    )
-    {
-    }
+    ) {}
 
     public function execute(IdentifiableCartData $cartData): CartDto
     {
         $cart = $this->getCartByIdentifiableAction->execute($cartData);
 
-        if (!$cart) {
+        if (! $cart) {
             throw new CartNotFoundException;
         }
 

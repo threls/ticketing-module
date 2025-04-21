@@ -2,7 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Enums;
 
-enum TicketStatusEnum:string
+enum TicketStatusEnum: string
 {
     case ACTIVE = 'active';
     case INACTIVE = 'inactive';

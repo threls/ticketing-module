@@ -9,5 +9,4 @@ class TicketingModuleSetting extends Model
     protected $table = 'ticketing_module_settings';
 
     protected $guarded = ['id'];
-
 }

@@ -36,8 +36,8 @@ use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\Event;
 use Threls\ThrelsTicketingModule\Models\Ticket;
 
-class ThrelsTicketingModule {
-
+class ThrelsTicketingModule
+{
     public function createEvent(CreateEventDto $dto): Event
     {
         return app(CreateEventAction::class)->execute($dto);
@@ -98,7 +98,7 @@ class ThrelsTicketingModule {
         return app(CreateBookingAction::class)->execute($dto);
     }
 
-    public function updateBookingStatus(Booking $booking,BookingStatusEnum $bookingStatus): void
+    public function updateBookingStatus(Booking $booking, BookingStatusEnum $bookingStatus): void
     {
         app(UpdateBookingStatus::class)->execute($booking, $bookingStatus);
     }

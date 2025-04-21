@@ -9,7 +9,6 @@ enum BookingStatusEnum: string
     case CANCELLED = 'CANCELLED';
     case REFUNDED = 'REFUNDED';
 
-
     public function allowedTransitions(): array
     {
         return match ($this) {
@@ -23,5 +22,4 @@ enum BookingStatusEnum: string
     {
         return in_array($newState, $this->allowedTransitions(), true);
     }
-
 }

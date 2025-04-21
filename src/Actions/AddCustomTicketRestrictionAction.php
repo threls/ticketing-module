@@ -11,6 +11,7 @@ use Threls\ThrelsTicketingModule\Models\Ticket;
 class AddCustomTicketRestrictionAction
 {
     protected AddCustomTicketRestrictionDto $dto;
+
     protected CustomRestriction $restriction;
 
     public function execute(AddCustomTicketRestrictionDto $dto): void
@@ -45,7 +46,7 @@ class AddCustomTicketRestrictionAction
 
     protected function createCustomRestriction(): static
     {
-        $customRestriction = new CustomRestriction();
+        $customRestriction = new CustomRestriction;
         $customRestriction->ticket_id = $this->dto->ticketId;
         $customRestriction->from_date = $this->dto->fromDate;
         $customRestriction->to_date = $this->dto->toDate;
@@ -70,8 +71,7 @@ class AddCustomTicketRestrictionAction
             );
         });
 
-        $this->restriction->customRestrictionItems()->whereNotIn('ticket_restriction_id' , $this->dto->restrictions->pluck('ticket_restriction_id')->toArray())->delete();
+        $this->restriction->customRestrictionItems()->whereNotIn('ticket_restriction_id', $this->dto->restrictions->pluck('ticket_restriction_id')->toArray())->delete();
 
     }
-
 }

@@ -19,5 +19,4 @@ class TicketRestriction extends Model
     {
         return $this->belongsTo(Ticket::class);
     }
-
 }

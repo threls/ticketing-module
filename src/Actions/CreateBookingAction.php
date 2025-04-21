@@ -13,6 +13,7 @@ use Threls\ThrelsTicketingModule\Models\Ticket;
 class CreateBookingAction
 {
     protected CreateBookingDto $dto;
+
     protected Booking $booking;
 
     protected Cart $cart;
@@ -20,11 +21,9 @@ class CreateBookingAction
     public function __construct(
         protected readonly DeleteCartAction $deleteCartAction,
         protected readonly CheckTicketDailyLimitAction $checkTicketDailyLimitAction,
-    )
-    {
-    }
+    ) {}
 
-    public function execute(CreateBookingDto $dto, )
+    public function execute(CreateBookingDto $dto)
     {
         $this->dto = $dto;
         $this->cart = Cart::query()->findOrFail($this->dto->cartId);
@@ -50,11 +49,11 @@ class CreateBookingAction
             /** @var Ticket $ticket */
             $ticket = $cartItem->itemable;
 
-            if ($ticket->parent_id){
+            if ($ticket->parent_id) {
                 $parentTicket = Ticket::query()->findOrFail($ticket->parent_id);
-               if(! $itemables->contains($parentTicket)){
-                   throw new DependentTicketException('You cannot book a '.$ticket->name.' ticket without a '.$parentTicket->name.' ticket.');
-               }
+                if (! $itemables->contains($parentTicket)) {
+                    throw new DependentTicketException('You cannot book a '.$ticket->name.' ticket without a '.$parentTicket->name.' ticket.');
+                }
             }
 
             $this->checkTicketDailyLimitAction->execute($ticket, $this->dto->date);
@@ -67,7 +66,7 @@ class CreateBookingAction
 
     protected function createBooking(): static
     {
-        $booking = new Booking();
+        $booking = new Booking;
         $booking->user_id = $this->dto->userId;
         $booking->date = $this->dto->date;
         $booking->time = $this->dto->time;
@@ -136,5 +135,4 @@ class CreateBookingAction
     {
         $this->deleteCartAction->execute($this->cart->id);
     }
-
 }

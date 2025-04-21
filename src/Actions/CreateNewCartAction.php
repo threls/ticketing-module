@@ -7,22 +7,19 @@ use Threls\ThrelsTicketingModule\Dto\CreateNewCartDto;
 
 class CreateNewCartAction
 {
-
     public function execute(CreateNewCartDto $createNewCartDto): Cart
     {
-        if($createNewCartDto->sessionId !== null){
+        if ($createNewCartDto->sessionId !== null) {
             return Cart::query()->firstOrCreate(['user_id' => $createNewCartDto->userId]);
-        }
-        else
-        {
+        } else {
             $cart = Cart::query()->where('session_id', $createNewCartDto->sessionId)->first();
-            if (! $cart){
-               $cart = new Cart();
-               $cart->session_id = $createNewCartDto->sessionId;
-               $cart->save();
+            if (! $cart) {
+                $cart = new Cart;
+                $cart->session_id = $createNewCartDto->sessionId;
+                $cart->save();
             }
+
             return $cart;
         }
     }
-
 }
