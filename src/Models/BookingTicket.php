@@ -17,7 +17,6 @@ class BookingTicket extends Model implements HasMedia
 
     protected $guarded = ['id'];
 
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection(self::MEDIA_QR_CODE)->singleFile();
@@ -38,5 +37,4 @@ class BookingTicket extends Model implements HasMedia
     {
         return $this->belongsTo(BookingItem::class);
     }
-
 }
