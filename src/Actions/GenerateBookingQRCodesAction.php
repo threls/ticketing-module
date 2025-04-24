@@ -26,17 +26,16 @@ class GenerateBookingQRCodesAction
     {
         for ($qty = 1; $qty <= $item->qty; $qty++) {
 
-           $bookingTicket = $item->bookingTickets()->create([
+            $bookingTicket = $item->bookingTickets()->create([
                 'ticket_id' => $item->ticket_id,
                 'ticket_number' => Str::uuid()->toString(),
-                'booking_id' => $item->booking_id
+                'booking_id' => $item->booking_id,
             ]);
 
-           $this->generateQRCode($bookingTicket);
+            $this->generateQRCode($bookingTicket);
 
         }
     }
-
 
     protected function generateQRCode(BookingTicket $ticket): void
     {

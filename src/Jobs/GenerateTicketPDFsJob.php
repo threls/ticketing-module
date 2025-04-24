@@ -21,7 +21,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
 
     public function handle(): void
     {
-        if($this->booking->bookingTickets()->count() == 0){
+        if ($this->booking->bookingTickets()->count() == 0) {
             $this->fail(new BadRequestHttpException('There are no tickets generated for this booking.'));
         }
 
