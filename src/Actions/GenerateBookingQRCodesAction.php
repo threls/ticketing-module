@@ -4,8 +4,10 @@ namespace Threls\ThrelsTicketingModule\Actions;
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
+use Threls\ThrelsTicketingModule\Models\BookingTicket;
 
 class GenerateBookingQRCodesAction
 {
@@ -16,16 +18,31 @@ class GenerateBookingQRCodesAction
         $this->booking = $booking;
 
         $booking->items->each(function (BookingItem $item) {
-            $this->generateQRCode($item);
+            $this->createBookingItemTickets($item);
         });
     }
 
-    protected function generateQRCode(BookingItem $item): void
+    protected function createBookingItemTickets(BookingItem $item): void
+    {
+        for ($qty = 1; $qty <= $item->qty; $qty++) {
+
+            $bookingTicket = $item->bookingTickets()->create([
+                'ticket_id' => $item->ticket_id,
+                'ticket_number' => Str::uuid()->toString(),
+                'booking_id' => $item->booking_id,
+            ]);
+
+            $this->generateQRCode($bookingTicket);
+
+        }
+    }
+
+    protected function generateQRCode(BookingTicket $ticket): void
     {
         $writer = new PngWriter;
 
         $qrCode = new QrCode(
-            data: $item->reference_number,
+            data: $ticket->ticket_number,
         );
 
         $result = $writer->write($qrCode);
@@ -34,7 +51,7 @@ class GenerateBookingQRCodesAction
         fwrite($stream, $result->getString());
         rewind($stream);
 
-        $item->addMediaFromStream($stream)->toMediaCollection(BookingItem::MEDIA_QR_CODE);
+        $ticket->addMediaFromStream($stream)->toMediaCollection(BookingTicket::MEDIA_QR_CODE);
 
         fclose($stream);
 

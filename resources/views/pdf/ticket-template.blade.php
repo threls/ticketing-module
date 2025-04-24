@@ -218,8 +218,8 @@
                 <span class="ticket--info--subtitle">{{\Carbon\Carbon::parse($booking->date)->format('d M, Y')}}</span>
             </div>
             <div class="ticket--center--col">
-                <span class="ticket--info--title">Booking</span>
-                <span  class="ticket--info--content">Ref #{{$booking->id}}</span>
+                <span class="ticket--info--title">Booking Ref.</span>
+                <span  class="ticket--info--content">#{{$booking->id}}</span>
             </div>
         </div>
         <div class="ticket--center--row">
@@ -227,6 +227,10 @@
                 <span class="ticket--info--title">Ticket type</span>
                 <span class="ticket--info--subtitle">{{$ticket->name}}</span>
                 <span class="ticket--info--content">Person Nr. {{$ticket->pax_number}}</span>
+            </div>
+            <div class="ticket--center--col">
+                <span class="ticket--info--title">Booking name</span>
+                <span  class="ticket--info--content">{{$userName}}</span>
             </div>
 
 

@@ -8,9 +8,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Spatie\LaravelPdf\Facades\Pdf;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Threls\ThrelsTicketingModule\Dto\GenerateTicketPdfDto;
 use Threls\ThrelsTicketingModule\Models\Booking;
-use Threls\ThrelsTicketingModule\Models\BookingItem;
+use Threls\ThrelsTicketingModule\Models\BookingTicket;
 
 class GenerateTicketPDFsJob implements ShouldQueue
 {
@@ -20,19 +21,24 @@ class GenerateTicketPDFsJob implements ShouldQueue
 
     public function handle(): void
     {
-        $this->booking->items->each(function (BookingItem $item) {
+        if ($this->booking->bookingTickets()->count() == 0) {
+            $this->fail(new BadRequestHttpException('There are no tickets generated for this booking.'));
+        }
+
+        $this->booking->bookingTickets->each(function (BookingTicket $ticket) {
 
             $dto = new GenerateTicketPdfDto(
-                eventName: $item->event->name,
-                booking: $item->booking,
-                ticket: $item->ticket,
-                item: $item,
-                qrCode: $item->getFirstMedia(BookingItem::MEDIA_QR_CODE)
+                eventName: $ticket->bookingItem->event->name,
+                booking: $this->booking,
+                ticket: $ticket->ticket,
+                item: $ticket->bookingItem,
+                qrCode: $ticket->getFirstMedia(BookingTicket::MEDIA_QR_CODE),
+                userName: $this->booking->bookingClient->full_name
             );
 
             $pdf = Pdf::view('pdf.ticket-template', $dto->toArray());
 
-            $item->addMediaFromBase64($pdf->base64())->toMediaCollection(BookingItem::MEDIA_TICKET);
+            $ticket->addMediaFromBase64($pdf->base64())->toMediaCollection(BookingTicket::MEDIA_TICKET);
 
         });
 

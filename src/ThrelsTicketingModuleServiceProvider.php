@@ -6,7 +6,7 @@ use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Threls\ThrelsTicketingModule\Commands\ThrelsTicketingModuleCommand;
 use Threls\ThrelsTicketingModule\Events\BookingConfirmedEvent;
-use Threls\ThrelsTicketingModule\Listeners\GenerateQRCodesListener;
+use Threls\ThrelsTicketingModule\Listeners\GenerateBookingTicketsListener;
 
 class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
 {
@@ -28,7 +28,7 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
     public function packageRegistered()
     {
         $this->app['events']->listen(
-            BookingConfirmedEvent::class, GenerateQRCodesListener::class
+            BookingConfirmedEvent::class, GenerateBookingTicketsListener::class
         );
 
     }
