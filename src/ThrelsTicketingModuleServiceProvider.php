@@ -21,7 +21,21 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
             ->name('ticketing-module')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_ticketing_module_table')
+            ->hasMigrations([
+                'create_carts_table',
+                'create_cart_items_table',
+                'create_events_table',
+                'create_tickets_table',
+                'create_ticket_restrictions_table',
+                'create_vat_rates_table',
+                'create_settings_table',
+                'create_bookings_table',
+                'create_booking_items_table',
+                'create_custom_restrictions_table',
+                'create_custom_restriction_items_table',
+                'create_booking_client_details_table',
+                'create_booking_tickets_table',
+            ])
             ->hasCommand(ThrelsTicketingModuleCommand::class);
     }
 
