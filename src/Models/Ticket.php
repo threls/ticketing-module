@@ -52,4 +52,9 @@ class Ticket extends Model implements Cartable
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
+
+    public function vatRate(): BelongsTo
+    {
+        return $this->belongsTo(VatRate::class);
+    }
 }
