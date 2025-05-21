@@ -40,9 +40,10 @@ class CreateTicketAction
             'name' => $this->createTicketDto->name,
             'pax_number' => $this->createTicketDto->paxNumber,
             'price' => $this->createTicketDto->price,
-            'currency' => $this->createTicketDto->currency,
+            'price_currency' => $this->createTicketDto->currency,
             'vat_id' => $this->createTicketDto->vatId,
             'vat_amount' => $this->extractVatAction->execute($this->createTicketDto->price, $vat->rate),
+            'vat_amount_currency' => $this->createTicketDto->currency,
             'status' => $this->createTicketDto->status,
         ]);
 

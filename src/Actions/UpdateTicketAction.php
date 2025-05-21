@@ -34,9 +34,10 @@ class UpdateTicketAction
             'name' => $this->dto->name,
             'pax_number' => $this->dto->paxNumber,
             'price' => $this->dto->price,
-            'currency' => $this->dto->currency,
+            'price_currency' => $this->dto->currency,
             'vat_id' => $this->dto->vatId,
             'vat_amount' => $this->extractVatAction->execute($this->dto->price, $vat->rate),
+            'vat_amount_currency' => $this->dto->currency,
             'status' => $this->dto->status,
         ]);
 

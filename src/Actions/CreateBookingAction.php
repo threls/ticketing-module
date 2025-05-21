@@ -71,7 +71,7 @@ class CreateBookingAction
         $booking->date = $this->dto->date;
         $booking->time = $this->dto->time;
         $booking->amount = $this->dto->amount;
-        $booking->currency = $this->dto->currency;
+        $booking->amount_currency = $this->dto->currency;
         $booking->status = $this->dto->status;
         $booking->save();
 
@@ -107,8 +107,11 @@ class CreateBookingAction
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
                 'amount' => $itemable->getPrice(),
-                'currency' => $itemable->currency,
-                'vat_amount' => property_exists($itemable, 'vat_amount') ? $itemable->vat_amount : null,
+                'amount_currency' => $itemable->currency,
+                'total_amount' => $itemable->getPrice() * $item->quantity,
+                'total_amount_currency' => $itemable->currency,
+                'vat_amount' => property_exists($itemable, 'vat_amount') ? $itemable->vat_amount * $item->quantity : null,
+                'vat_amount_currency' => $itemable->currency,
                 'vat_id' => property_exists($itemable, 'vat_id') ? $itemable->vat_id : null,
                 'pax_number' => property_exists($itemable, 'pax_number') ? $itemable->pax_number : null,
                 'reference_number' => strtoupper(Str::substr(trim($itemable->event->name), 0, 3)).'-'.Str::ulid(),
@@ -120,7 +123,7 @@ class CreateBookingAction
 
     protected function updateBookingTotal(): static
     {
-        $totalAmount = $this->booking->items()->sum('amount');
+        $totalAmount = $this->booking->items()->sum('total_amount');
         $vatAmount = $this->booking->items()->sum('vat_amount');
 
         $this->booking->update([

@@ -14,8 +14,9 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->bigInteger('amount')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('amount_currency')->nullable();
             $table->bigInteger('vat_amount');
+            $table->string('vat_amount_currency')->default('EUR');
             $table->string('status');
             $table->timestamps();
         });

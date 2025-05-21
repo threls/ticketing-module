@@ -15,9 +15,10 @@ return new class extends Migration
             $table->string('name');
             $table->integer('pax_number')->default(1);
             $table->bigInteger('price');
-            $table->string('currency')->default('EUR');
+            $table->string('price_currency')->default('EUR');
             $table->foreignId('vat_id')->constrained('vat_rates');
             $table->bigInteger('vat_amount')->nullable();
+            $table->string('vat_amount_currency')->default('EUR');
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();

@@ -15,8 +15,11 @@ return new class extends Migration
             $table->foreignId('ticket_id')->constrained('tickets');
             $table->bigInteger('qty');
             $table->bigInteger('amount');
-            $table->bigInteger('currency');
-            $table->bigInteger('vat_amount');
+            $table->string('amount_currency');
+            $table->bigInteger('total_amount')->nullable();
+            $table->string('total_amount_currency')->nullable();
+            $table->bigInteger('vat_amount')->nullable();
+            $table->string('vat_amount_currency')->nullable();
             $table->integer('pax_number');
             $table->foreignId('vat_id')->constrained('vat_rates');
             $table->string('reference_number')->unique();
