@@ -47,4 +47,9 @@ class Ticket extends Model implements Cartable
     {
         return $this->price->getAmount()->toFloat();
     }
+
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
 }
