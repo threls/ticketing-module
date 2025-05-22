@@ -55,6 +55,6 @@ class Ticket extends Model implements Cartable
 
     public function vatRate(): BelongsTo
     {
-        return $this->belongsTo(VatRate::class);
+        return $this->belongsTo(VatRate::class, 'vat_id');
     }
 }

@@ -15,7 +15,7 @@ class MoneyCast implements CastsAttributes
             return null;
         }
 
-        return Money::ofMinor($value, $attributes['currency'] ?? 'EUR');
+        return Money::ofMinor($value, $attributes[$key.'_currency'] ?? 'EUR');
     }
 
     public function set(Model $model, string $key, mixed $value, array $attributes): int
