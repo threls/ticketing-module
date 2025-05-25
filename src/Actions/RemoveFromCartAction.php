@@ -29,7 +29,7 @@ class RemoveFromCartAction
 
         $item->delete();
 
-        return CartDto::from($cart);
+        return CartDto::from($cart->fresh());
 
     }
 }

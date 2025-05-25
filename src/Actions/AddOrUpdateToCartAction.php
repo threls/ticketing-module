@@ -26,7 +26,7 @@ class AddOrUpdateToCartAction
 
         $this->updateCartItem();
 
-        return CartDto::from($this->cart);
+        return CartDto::from($this->cart->fresh());
 
     }
 

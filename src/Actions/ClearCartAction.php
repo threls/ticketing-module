@@ -22,7 +22,7 @@ class ClearCartAction
 
         $cart->emptyCart();
 
-        return CartDto::from($cart);
+        return CartDto::from($cart->fresh());
 
     }
 }
