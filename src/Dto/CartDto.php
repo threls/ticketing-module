@@ -25,7 +25,7 @@ class CartDto extends Data
         return new self(
             id: $cart->id,
             userId: $cart->user_id,
-            sessionId: $cart->sessionId,
+            sessionId: $cart->session_id,
             items: CartItemDto::collect($cart->items)
         );
     }
