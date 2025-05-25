@@ -24,7 +24,6 @@ class CartItemDto extends Data
             id: $cartItem->id,
             item: $cartItem->itemable,
             quantity: $cartItem->quantity
-
         );
     }
 }
