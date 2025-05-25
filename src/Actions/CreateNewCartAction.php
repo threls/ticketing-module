@@ -9,7 +9,7 @@ class CreateNewCartAction
 {
     public function execute(CreateNewCartDto $createNewCartDto): Cart
     {
-        if ($createNewCartDto->sessionId !== null) {
+        if ($createNewCartDto->sessionId == null) {
             return Cart::query()->firstOrCreate(['user_id' => $createNewCartDto->userId]);
         } else {
             $cart = Cart::query()->where('session_id', $createNewCartDto->sessionId)->first();
