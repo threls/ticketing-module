@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('ticket_id')->constrained('tickets');
             $table->bigInteger('qty');
             $table->bigInteger('amount');
-            $table->string('amount_currency');
+            $table->string('amount_currency')->default('EUR');
             $table->bigInteger('total_amount')->nullable();
             $table->string('total_amount_currency')->nullable();
             $table->bigInteger('vat_amount')->nullable();

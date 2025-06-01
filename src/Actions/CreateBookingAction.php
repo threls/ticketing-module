@@ -110,10 +110,10 @@ class CreateBookingAction
                 'amount_currency' => $itemable->currency,
                 'total_amount' => $itemable->getPrice() * $item->quantity,
                 'total_amount_currency' => $itemable->currency,
-                'vat_amount' => property_exists($itemable, 'vat_amount') ? $itemable->vat_amount * $item->quantity : null,
+                'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount * $item->quantity : null,
                 'vat_amount_currency' => $itemable->currency,
-                'vat_id' => property_exists($itemable, 'vat_id') ? $itemable->vat_id : null,
-                'pax_number' => property_exists($itemable, 'pax_number') ? $itemable->pax_number : null,
+                'vat_id' => $itemable->vat_id ?? null,
+                'pax_number' => $itemable->pax_number ?? null,
                 'reference_number' => strtoupper(Str::substr(trim($itemable->event->name), 0, 3)).'-'.Str::ulid(),
             ]);
         });
