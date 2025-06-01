@@ -100,7 +100,6 @@ class CreateBookingAction
     {
         $this->cart->items->each(function (CartItem $item): void {
 
-            /** @var Ticket $itemable */
             $itemable = $item->itemable;
 
             $this->booking->items()->create([
@@ -108,11 +107,11 @@ class CreateBookingAction
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
                 'amount' => $itemable->price->getMinorAmount()->toInt(),
-                'amount_currency' => $itemable->currency,
+                'amount_currency' => $itemable->price_currency,
                 'total_amount' => $itemable->price->getMinorAmount()->toInt() * $item->quantity,
-                'total_amount_currency' => $itemable->currency,
+                'total_amount_currency' => $itemable->price_currency,
                 'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount->getMinorAmount()->toInt() * $item->quantity : null,
-                'vat_amount_currency' => $itemable->currency,
+                'vat_amount_currency' => $itemable->price_currency,
                 'vat_id' => $itemable->vat_id ?? null,
                 'pax_number' => $itemable->pax_number ?? null,
                 'reference_number' => strtoupper(Str::substr(trim($itemable->event->name), 0, 3)).'-'.Str::ulid(),
