@@ -18,7 +18,7 @@ class CreateBookingDto extends Data
         public Carbon $date,
         public ?string $time,
         public ?int $amount,
-        public string $currency,
+        public ?string $currency,
         public ?int $vatAmount,
         public BookingStatusEnum $status,
     ) {}
