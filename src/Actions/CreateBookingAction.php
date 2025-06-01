@@ -127,8 +127,8 @@ class CreateBookingAction
         $vatAmount = $this->booking->items()->sum('vat_amount');
 
         $this->booking->update([
-            'amount' => $totalAmount,
-            'vat_amount' => $vatAmount,
+            'amount' => (int) $totalAmount,
+            'vat_amount' => (int) $vatAmount,
         ]);
 
         return $this;
