@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 
 class Booking extends Model
@@ -18,6 +19,8 @@ class Booking extends Model
     {
         return [
             'status' => BookingStatusEnum::class,
+            'amount' => MoneyCast::class,
+            'vat_amount' => MoneyCast::class,
         ];
     }
 
