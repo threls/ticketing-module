@@ -100,6 +100,7 @@ class CreateBookingAction
     {
         $this->cart->items->each(function (CartItem $item): void {
 
+            /** @var Ticket $itemable */
             $itemable = $item->itemable;
 
             $this->booking->items()->create([
@@ -110,7 +111,7 @@ class CreateBookingAction
                 'amount_currency' => $itemable->currency,
                 'total_amount' => $itemable->getPrice() * $item->quantity,
                 'total_amount_currency' => $itemable->currency,
-                'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount * $item->quantity : null,
+                'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount->getUnscaledAmount() * $item->quantity : null,
                 'vat_amount_currency' => $itemable->currency,
                 'vat_id' => $itemable->vat_id ?? null,
                 'pax_number' => $itemable->pax_number ?? null,
