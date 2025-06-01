@@ -11,9 +11,7 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class CreateNewCartDto extends Data
 {
     public function __construct(
-        #[RequiredWithout('user_id')]
         public readonly ?string $sessionId,
-        #[RequiredWithout('session_id')]
         public readonly ?int $userId,
     ) {}
 }

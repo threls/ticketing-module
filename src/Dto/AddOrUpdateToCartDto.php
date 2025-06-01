@@ -10,11 +10,8 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 class AddOrUpdateToCartDto extends IdentifiableCartData
 {
     public function __construct(
-        #[RequiredWithout(['user_id', 'session_id'])]
         ?int $cartId,
-        #[RequiredWithout(['user_id', 'cart_id'])]
         ?string $sessionId,
-        #[RequiredWithout(['session_id', 'cart_id'])]
         ?int $userId,
         public UpdateCartItemDto $item
     ) {
