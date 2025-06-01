@@ -100,15 +100,16 @@ class CreateBookingAction
     {
         $this->cart->items->each(function (CartItem $item): void {
 
+            /** @var Ticket $itemable */
             $itemable = $item->itemable;
 
             $this->booking->items()->create([
                 'event_id' => $itemable->event->id,
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
-                'amount' => $itemable->getPrice(),
+                'amount' => $itemable->price->getMinorAmount()->toInt(),
                 'amount_currency' => $itemable->currency,
-                'total_amount' => $itemable->getPrice() * $item->quantity,
+                'total_amount' => $itemable->price->getMinorAmount()->toInt() * $item->quantity,
                 'total_amount_currency' => $itemable->currency,
                 'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount->getMinorAmount()->toInt() * $item->quantity : null,
                 'vat_amount_currency' => $itemable->currency,
