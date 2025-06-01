@@ -16,7 +16,7 @@ class CheckTicketDailyLimitAction
 
     protected Carbon $date;
 
-    protected int $ticketsNr;
+    protected ?int $ticketsNr;
 
     protected Collection $restrictions;
 

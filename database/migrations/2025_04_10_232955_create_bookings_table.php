@@ -15,10 +15,11 @@ return new class extends Migration
             $table->time('time')->nullable();
             $table->bigInteger('amount')->nullable()->default('EUR');
             $table->string('amount_currency')->nullable();
-            $table->bigInteger('vat_amount');
+            $table->bigInteger('vat_amount')->nullable();
             $table->string('vat_amount_currency')->default('EUR');
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
