@@ -42,7 +42,7 @@ class GenerateBookingQRCodesAction
         $writer = new PngWriter;
 
         $qrCode = new QrCode(
-            data: $ticket->ticket_number,
+            data: $ticket->id,
         );
 
         $result = $writer->write($qrCode);
@@ -51,7 +51,7 @@ class GenerateBookingQRCodesAction
         fwrite($stream, $result->getString());
         rewind($stream);
 
-        $ticket->addMediaFromStream($stream)->toMediaCollection(BookingTicket::MEDIA_QR_CODE);
+        $ticket->addMediaFromStream($stream)->setFileName('ticket-'.$ticket->id.'png')->toMediaCollection(BookingTicket::MEDIA_QR_CODE);
 
         fclose($stream);
 
