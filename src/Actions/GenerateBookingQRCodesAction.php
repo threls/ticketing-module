@@ -4,7 +4,6 @@ namespace Threls\ThrelsTicketingModule\Actions;
 
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
-use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
 use Threls\ThrelsTicketingModule\Models\BookingTicket;
@@ -28,7 +27,7 @@ class GenerateBookingQRCodesAction
 
             $bookingTicket = $item->bookingTickets()->create([
                 'ticket_id' => $item->ticket_id,
-                'ticket_number' => strtoupper(uniqid($item->ticket_id)) ,
+                'ticket_number' => strtoupper(uniqid($item->ticket_id)),
                 'booking_id' => $item->booking_id,
             ]);
 
