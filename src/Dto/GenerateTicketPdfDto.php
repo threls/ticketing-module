@@ -2,9 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
-use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
