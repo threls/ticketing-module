@@ -32,13 +32,13 @@ class GenerateTicketPDFsJob implements ShouldQueue
                 booking: $this->booking,
                 ticket: $ticket->ticket,
                 item: $ticket->bookingItem,
-                qrCode: $ticket->getFirstMedia(BookingTicket::MEDIA_QR_CODE),
+                qrCode: $ticket->hasMedia(BookingTicket::MEDIA_QR_CODE) ? $ticket->getFirstMedia(BookingTicket::MEDIA_QR_CODE) : null,
                 userName: $this->booking->bookingClient->full_name
             );
 
             $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray());
 
-            $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->bookingItem->event->name.'-ticket-'.$ticket->id.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
+            $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
 
         });
 
