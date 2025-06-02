@@ -10,7 +10,6 @@ use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
 use Threls\ThrelsTicketingModule\Models\Ticket;
 
-#[MapName(SnakeCaseMapper::class)]
 class GenerateTicketPdfDto extends Data
 {
     public function __construct(

@@ -36,7 +36,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
                 userName: $this->booking->bookingClient->full_name
             );
 
-            $pdf = Pdf::view('pdf.ticket-template', $dto->toArray());
+            $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray());
 
             $ticket->addMediaFromBase64($pdf->base64())->toMediaCollection(BookingTicket::MEDIA_TICKET);
 

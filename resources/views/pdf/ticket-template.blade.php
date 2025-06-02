@@ -203,7 +203,7 @@
 
 <div class="ticket">
     <div class="ticket--start">
-{{--        <img src="https://i.ibb.co/W3cK42J/image-1.png"/>--}}
+        {{--        <img src="https://i.ibb.co/W3cK42J/image-1.png"/>--}}
     </div>
     <div class="ticket--center">
         <div class="ticket--center--row">
@@ -215,18 +215,18 @@
         <div class="ticket--center--row">
             <div class="ticket--center--col">
                 <span class="ticket--info--title">Date</span>
-                <span class="ticket--info--subtitle">{{\Carbon\Carbon::parse($booking->date)->format('d M, Y')}}</span>
+                <span class="ticket--info--subtitle">{{\Carbon\Carbon::parse($booking['date'])->format('d M, Y')}}</span>
             </div>
             <div class="ticket--center--col">
                 <span class="ticket--info--title">Booking Ref.</span>
-                <span  class="ticket--info--content">#{{$booking->id}}</span>
+                <span  class="ticket--info--content">#{{$booking['id']}}</span>
             </div>
         </div>
         <div class="ticket--center--row">
             <div class="ticket--center--col">
                 <span class="ticket--info--title">Ticket type</span>
-                <span class="ticket--info--subtitle">{{$ticket->name}}</span>
-                <span class="ticket--info--content">Person Nr. {{$ticket->pax_number}}</span>
+                <span class="ticket--info--subtitle">{{$ticket['name']}}</span>
+                <span class="ticket--info--content">Person Nr. {{$ticket['pax_number']}}</span>
             </div>
             <div class="ticket--center--col">
                 <span class="ticket--info--title">Booking name</span>
@@ -237,7 +237,7 @@
         </div>
     </div>
     <div class="ticket--end">
-        <div>{{$qrCode->img()}}</div>
+        {{--        <div>{{$qrCode->img()}}</div>--}}
         <div><img src="{{config('ticketing-module.logo')}}"/></div>
     </div>
 </div>
