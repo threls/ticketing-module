@@ -10,7 +10,6 @@ Here are your booking details:
 @component('mail::panel')
 - **Booking Reference:** {{ $bookingId }}
 - **Date:** {{ $bookingDate->format('d M, Y') }}
-- **Number of People:** {{ $peopleNr }}
 @endcomponent
 
 @component('mail::panel')
