@@ -7,15 +7,10 @@ Thank you for your purchase!
 
 Here are your booking details:
 
-@component('mail::panel')
 - **Booking Reference:** {{ $bookingId }}
-- **Date:** {{ $bookingDate->format('d M, Y') }}
-@endcomponent
-
-@component('mail::panel')
-    Your ticket(s) and payment receipt are attached to this email.
-@endcomponent
-
+- **Date:** {{ \Carbon\Carbon::parse($bookingDate)->format('d M, Y') }}
+<br>
+Your ticket(s) and payment receipt are attached to this email.
 
 If you have any questions, feel free to contact our support at {{config('ticketing-module.support_email')}}
 

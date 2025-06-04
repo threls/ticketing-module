@@ -10,7 +10,6 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-#[MapName(SnakeCaseMapper::class)]
 class BookingConfirmationMailDto extends Data
 {
     public function __construct(
