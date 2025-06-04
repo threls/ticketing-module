@@ -17,7 +17,6 @@ class BookingConfirmationMailDto extends Data
         public string $userName,
         public int $bookingId,
         public Carbon $bookingDate,
-        #[DataCollectionOf(Media::class)]
         public Collection $attachments,
     ) {}
 }

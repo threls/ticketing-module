@@ -26,7 +26,7 @@ class BookingConfirmationMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.booking-confirmation',
+            markdown: 'ticketing-module::emails.booking-confirmation',
             with: $this->dto->toArray(),
         );
     }
