@@ -16,9 +16,7 @@ class CreateCartWithItemsAction
 
     public function __construct(
         protected readonly CreateNewCartAction $createNewCartAction,
-    )
-    {
-    }
+    ) {}
 
     public function execute(CreateCartWithItemsDto $dto)
     {
@@ -38,6 +36,7 @@ class CreateCartWithItemsAction
             'userId' => $this->dto->userId,
             'extraAttributes' => $this->dto->extraAttributes,
         ]));
+
         return $this;
     }
 
@@ -49,7 +48,6 @@ class CreateCartWithItemsAction
 
         return $this;
     }
-
 
     protected function updateCartItem(UpdateCartItemDto $dto): void
     {
@@ -67,5 +65,4 @@ class CreateCartWithItemsAction
             );
         }
     }
-
 }

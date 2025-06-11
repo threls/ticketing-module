@@ -10,11 +10,8 @@ class CreateCartWithItemsDto
     public function __construct(
         public readonly ?string $sessionId,
         public readonly ?int $userId,
-        public readonly ?array $extraAttributes = null,
+        public readonly ?array $extraAttributes,
         #[DataCollectionOf(UpdateCartItemDto::class)]
         public Collection $items,
-    )
-    {
-    }
-
+    ) {}
 }

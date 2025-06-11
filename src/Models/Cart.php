@@ -15,5 +15,4 @@ class Cart extends \Binafy\LaravelCart\Models\Cart
     {
         return $this->extra_attributes->modelScope();
     }
-
 }
