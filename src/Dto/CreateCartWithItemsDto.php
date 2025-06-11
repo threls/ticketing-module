@@ -2,7 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 
 class CreateCartWithItemsDto
