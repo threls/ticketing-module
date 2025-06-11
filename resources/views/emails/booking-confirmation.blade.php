@@ -9,6 +9,7 @@ Here are your booking details:
 
 - **Booking Reference:** {{ $bookingId }}
 - **Date:** {{ \Carbon\Carbon::parse($bookingDate)->format('d M, Y') }}
+
 <br>
 Your ticket(s) and payment receipt are attached to this email.
 

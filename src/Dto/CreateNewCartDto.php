@@ -12,5 +12,6 @@ class CreateNewCartDto extends Data
     public function __construct(
         public readonly ?string $sessionId,
         public readonly ?int $userId,
+        public readonly ?array $extraAttributes = null,
     ) {}
 }
