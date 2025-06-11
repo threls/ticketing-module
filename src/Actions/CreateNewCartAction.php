@@ -13,6 +13,7 @@ class CreateNewCartAction
             $cart = Cart::query()->firstOrCreate(['user_id' => $createNewCartDto->userId]);
             $cart->extra_attributes = $createNewCartDto->extraAttributes;
             $cart->save();
+
             return $cart;
         } else {
             $cart = Cart::query()->where('session_id', $createNewCartDto->sessionId)->first();
