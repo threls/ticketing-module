@@ -2,8 +2,8 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-use Binafy\LaravelCart\Models\Cart;
 use Threls\ThrelsTicketingModule\Dto\CreateNewCartDto;
+use Threls\ThrelsTicketingModule\Models\Cart;
 
 class CreateNewCartAction
 {

@@ -16,16 +16,18 @@ class CartDto extends Data
         public int $id,
         public ?int $userId,
         public ?string $sessionId,
+        public ?array $extraAttributes,
         #[DataCollectionOf(CartItemDto::class)]
         public Collection $items,
     ) {}
 
-    public static function fromModel(Cart $cart): self
+    public static function fromModel(Cart|\Threls\ThrelsTicketingModule\Models\Cart $cart): self
     {
         return new self(
             id: $cart->id,
             userId: $cart->user_id,
             sessionId: $cart->session_id,
+            extraAttributes: $cart->extra_attributes,
             items: CartItemDto::collect($cart->items)
         );
     }
