@@ -8,6 +8,7 @@ use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 #[MapName(SnakeCaseMapper::class)]
 class CartDto extends Data
@@ -16,7 +17,7 @@ class CartDto extends Data
         public int $id,
         public ?int $userId,
         public ?string $sessionId,
-        public ?array $extraAttributes,
+        public ?SchemalessAttributes $extraAttributes,
         #[DataCollectionOf(CartItemDto::class)]
         public Collection $items,
     ) {}
