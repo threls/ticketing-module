@@ -2,11 +2,11 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-use Binafy\LaravelCart\Models\Cart;
 use Threls\ThrelsTicketingModule\Dto\CartDto;
 use Threls\ThrelsTicketingModule\Dto\CreateCartWithItemsDto;
 use Threls\ThrelsTicketingModule\Dto\CreateNewCartDto;
 use Threls\ThrelsTicketingModule\Dto\UpdateCartItemDto;
+use Threls\ThrelsTicketingModule\Models\Cart;
 
 class CreateCartWithItemsAction
 {
