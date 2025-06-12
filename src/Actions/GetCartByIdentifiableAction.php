@@ -2,8 +2,8 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-use Threls\ThrelsTicketingModule\Models\Cart;
 use Threls\ThrelsTicketingModule\Dto\IdentifiableCartData;
+use Threls\ThrelsTicketingModule\Models\Cart;
 
 class GetCartByIdentifiableAction
 {

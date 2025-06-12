@@ -17,7 +17,7 @@ class CartDto extends Data
         public int $id,
         public ?int $userId,
         public ?string $sessionId,
-        public ?SchemalessAttributes $extraAttributes = null,
+        public ?SchemalessAttributes $extraAttributes,
         #[DataCollectionOf(CartItemDto::class)]
         public Collection $items,
     ) {}
@@ -28,7 +28,7 @@ class CartDto extends Data
             id: $cart->id,
             userId: $cart->user_id,
             sessionId: $cart->session_id,
-            extraAttributes: !empty($cart->extra_attributes) ? $cart->extra_attributes : null,
+            extraAttributes: ! empty($cart->extra_attributes) ? $cart->extra_attributes : null,
             items: CartItemDto::collect($cart->items)
         );
     }
