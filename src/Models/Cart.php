@@ -21,8 +21,7 @@ class Cart extends \Binafy\LaravelCart\Models\Cart
     public function getTotalAttribute(): Money
     {
         return $this->items->reduce(
-            fn(Money $total, CartItem $cartItem) =>
-            $total->plus($cartItem->itemable->price->multipliedBy($cartItem->quantity)),
+            fn (Money $total, CartItem $cartItem) => $total->plus($cartItem->itemable->price->multipliedBy($cartItem->quantity)),
             Money::of(0, 'EUR')
         );
     }
