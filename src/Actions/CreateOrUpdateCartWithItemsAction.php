@@ -85,7 +85,7 @@ class CreateOrUpdateCartWithItemsAction
 
     protected function checkTicketDependencyAndLimit(): static
     {
-        $this->checkTicketDependencyAndLimitAction->execute($this->cart->fresh(), Carbon::parse($this->dto->extraAttributes->date));
+        $this->checkTicketDependencyAndLimitAction->execute($this->cart->fresh(), Carbon::parse($this->dto->extraAttributes['date']));
 
         return $this;
     }

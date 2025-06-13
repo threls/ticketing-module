@@ -12,7 +12,7 @@ class CreateOrUpdateCartWithItemsDto extends IdentifiableCartData
         ?string           $sessionId,
         ?int              $userId,
         ?int              $cartId,
-        public ?SchemalessAttributes     $extraAttributes,
+        public ?array     $extraAttributes,
         #[DataCollectionOf(UpdateCartItemDto::class)]
         public Collection $items,
     )
