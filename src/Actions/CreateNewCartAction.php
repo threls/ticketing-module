@@ -15,11 +15,12 @@ class CreateNewCartAction
             $cart->save();
 
             return $cart->fresh();
-        } elseif($createNewCartDto->sessionId != null) {
+        } elseif ($createNewCartDto->sessionId != null) {
             $cart = Cart::query()->where('session_id', $createNewCartDto->sessionId)->first();
             if (! $cart) {
                 return $this->createCart($createNewCartDto);
             }
+
             return $cart;
         }
 
