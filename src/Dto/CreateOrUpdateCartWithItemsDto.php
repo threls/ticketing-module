@@ -4,7 +4,6 @@ namespace Threls\ThrelsTicketingModule\Dto;
 
 use Illuminate\Support\Collection;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
-use Spatie\SchemalessAttributes\SchemalessAttributes;
 
 class CreateOrUpdateCartWithItemsDto extends IdentifiableCartData
 {
@@ -15,8 +14,7 @@ class CreateOrUpdateCartWithItemsDto extends IdentifiableCartData
         public ?array     $extraAttributes,
         #[DataCollectionOf(UpdateCartItemDto::class)]
         public Collection $items,
-    )
-    {
+    ) {
         parent::__construct($cartId, $sessionId, $userId);
     }
 }

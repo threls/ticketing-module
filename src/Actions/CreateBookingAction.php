@@ -5,10 +5,8 @@ namespace Threls\ThrelsTicketingModule\Actions;
 use Binafy\LaravelCart\Models\CartItem;
 use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
-use Threls\ThrelsTicketingModule\Exceptions\DependentTicketException;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\Cart;
-use Threls\ThrelsTicketingModule\Models\Ticket;
 
 class CreateBookingAction
 {
@@ -17,7 +15,6 @@ class CreateBookingAction
     protected Booking $booking;
 
     protected Cart $cart;
-
 
     public function __construct(
         protected readonly DeleteCartAction $deleteCartAction,

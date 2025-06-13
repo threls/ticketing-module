@@ -12,14 +12,12 @@ class CheckTicketDependencyAndLimitAction
 {
     public function __construct(
         protected readonly CheckTicketDailyLimitAction $checkTicketDailyLimitAction,
-    )
-    {
-    }
+    ) {}
 
     public function execute(Cart $cart, Carbon $date): void
     {
         $itemables = $cart->items()
-            ->map(fn(CartItem $cartItem) => $cartItem->itemable());
+            ->map(fn (CartItem $cartItem) => $cartItem->itemable());
 
         $cart->items()->each(function (CartItem $cartItem) use ($itemables, $date) {
             /** @var Ticket $ticket */
@@ -36,6 +34,4 @@ class CheckTicketDependencyAndLimitAction
 
         });
     }
-
-
 }
