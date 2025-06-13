@@ -5,8 +5,8 @@ namespace Threls\ThrelsTicketingModule\Actions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Threls\ThrelsTicketingModule\Dto\CartDto;
-use Threls\ThrelsTicketingModule\Dto\CreateOrUpdateCartWithItemsDto;
 use Threls\ThrelsTicketingModule\Dto\CreateNewCartDto;
+use Threls\ThrelsTicketingModule\Dto\CreateOrUpdateCartWithItemsDto;
 use Threls\ThrelsTicketingModule\Dto\UpdateCartItemDto;
 use Threls\ThrelsTicketingModule\Models\Cart;
 
@@ -27,7 +27,7 @@ class CreateOrUpdateCartWithItemsAction
     {
         $this->dto = $dto;
 
-        DB::transaction(function () use ($dto) {
+        DB::transaction(function () {
             $this->getOrCreateCart()
                 ->createCartItems()
                 ->checkTicketDependencyAndLimit();
@@ -47,14 +47,13 @@ class CreateOrUpdateCartWithItemsAction
                 'userId' => $this->dto->userId,
                 'extraAttributes' => $this->dto->extraAttributes,
             ]));
-        }
-        else{
+        } else {
             $cart->extra_attributes = $this->dto->extraAttributes;
             $cart->save();
             $this->cart = $cart;
         }
 
-       return $this;
+        return $this;
     }
 
     protected function createCartItems()

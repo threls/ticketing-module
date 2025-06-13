@@ -9,14 +9,13 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 class CreateOrUpdateCartWithItemsDto extends IdentifiableCartData
 {
     public function __construct(
-        ?string           $sessionId,
-        ?int              $userId,
-        ?int              $cartId,
-        public ?SchemalessAttributes     $extraAttributes,
+        ?string $sessionId,
+        ?int $userId,
+        ?int $cartId,
+        public ?SchemalessAttributes $extraAttributes,
         #[DataCollectionOf(UpdateCartItemDto::class)]
         public Collection $items,
-    )
-    {
+    ) {
         parent::__construct($cartId, $sessionId, $userId);
     }
 }
