@@ -16,8 +16,10 @@ class CheckTicketDependencyAndLimitAction
 
     public function execute(Cart $cart, Carbon $date): void
     {
-        $itemables = $cart->items()
-            ->map(fn (CartItem $cartItem) => $cartItem->itemable());
+        $itemables = collect();
+        $cart->items()->each(function (CartItem $cartItem) use (&$itemables) {
+            $itemables->add($cartItem->itemable());
+        });
 
         $cart->items()->each(function (CartItem $cartItem) use ($itemables, $date) {
             /** @var Ticket $ticket */
