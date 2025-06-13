@@ -58,8 +58,8 @@ class CreateOrUpdateCartWithItemsAction
 
     protected function createCartItems()
     {
-        $this->cart->items()->whereHas('itemable',function ($builder) {
-            $builder->whereNotIn('id',$this->dto->items->pluck('itemable_id'));
+        $this->cart->items()->whereHas('itemable', function ($builder) {
+            $builder->whereNotIn('id', $this->dto->items->pluck('itemable_id'));
         })->delete();
 
         $this->dto->items->each(function (UpdateCartItemDto $dto) {
