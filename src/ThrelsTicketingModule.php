@@ -6,7 +6,7 @@ use Threls\ThrelsTicketingModule\Actions\AddCustomTicketRestrictionAction;
 use Threls\ThrelsTicketingModule\Actions\AddOrUpdateToCartAction;
 use Threls\ThrelsTicketingModule\Actions\ClearCartAction;
 use Threls\ThrelsTicketingModule\Actions\CreateBookingAction;
-use Threls\ThrelsTicketingModule\Actions\CreateCartWithItemsAction;
+use Threls\ThrelsTicketingModule\Actions\CreateOrUpdateCartWithItemsAction;
 use Threls\ThrelsTicketingModule\Actions\CreateEventAction;
 use Threls\ThrelsTicketingModule\Actions\CreateTicketAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteCartAction;
@@ -25,7 +25,7 @@ use Threls\ThrelsTicketingModule\Dto\AddCustomTicketRestrictionDto;
 use Threls\ThrelsTicketingModule\Dto\AddOrUpdateToCartDto;
 use Threls\ThrelsTicketingModule\Dto\CartDto;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
-use Threls\ThrelsTicketingModule\Dto\CreateCartWithItemsDto;
+use Threls\ThrelsTicketingModule\Dto\CreateOrUpdateCartWithItemsDto;
 use Threls\ThrelsTicketingModule\Dto\CreateEventDto;
 use Threls\ThrelsTicketingModule\Dto\CreateTicketDto;
 use Threls\ThrelsTicketingModule\Dto\IdentifiableCartData;
@@ -50,9 +50,9 @@ class ThrelsTicketingModule
         return app(CreateTicketAction::class)->execute($dto);
     }
 
-    public function createCartWithItems(CreateCartWithItemsDto $dto): CartDto
+    public function createOrUpdateCartWithItems(CreateOrUpdateCartWithItemsDto $dto): CartDto
     {
-        return app(CreateCartWithItemsAction::class)->execute($dto);
+        return app(CreateOrUpdateCartWithItemsAction::class)->execute($dto);
     }
 
     public function addOrUpdateCart(AddOrUpdateToCartDto $dto): CartDto
