@@ -15,5 +15,4 @@ class FindBookingByRefNrAndLastNameAction
             })
             ->firstOrFail();
     }
-
 }

@@ -36,7 +36,6 @@ class CreateBookingAction
                 ->deleteCart();
         });
 
-
         return $this->booking;
     }
 
