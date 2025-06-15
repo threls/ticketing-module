@@ -29,8 +29,8 @@ class CreateOrUpdateCartWithItemsAction
 
         DB::transaction(function () {
             $this->getOrCreateCart()
-                ->createCartItems()
-                ->checkTicketDependencyAndLimit();
+                ->checkTicketDependencyAndLimit()
+                ->createCartItems();
         });
 
         return CartDto::from($this->cart->fresh());
@@ -88,7 +88,7 @@ class CreateOrUpdateCartWithItemsAction
 
     protected function checkTicketDependencyAndLimit(): static
     {
-        $this->checkTicketDependencyAndLimitAction->execute($this->cart->fresh(), Carbon::parse($this->dto->extraAttributes['date']));
+        $this->checkTicketDependencyAndLimitAction->checkFromCollection($this->dto->items, Carbon::parse($this->dto->extraAttributes['date']));
 
         return $this;
     }
