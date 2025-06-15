@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('reference_nr')->unique();
             $table->bigInteger('user_id')->nullable();
             $table->date('date')->nullable();
             $table->time('time')->nullable();
