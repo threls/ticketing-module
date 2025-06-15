@@ -3,6 +3,7 @@
 namespace Threls\ThrelsTicketingModule\Actions;
 
 use Binafy\LaravelCart\Models\CartItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
 use Threls\ThrelsTicketingModule\Models\Booking;
@@ -26,12 +27,15 @@ class CreateBookingAction
         $this->dto = $dto;
         $this->cart = Cart::query()->findOrFail($this->dto->cartId);
 
-        $this->checkTicketDependencyAndLimit()
-            ->createBooking()
-            ->createBookingClient()
-            ->createBookingItems()
-            ->updateBookingTotal()
-            ->deleteCart();
+        DB::transaction(function () {
+            $this->checkTicketDependencyAndLimit()
+                ->createBooking()
+                ->createBookingClient()
+                ->createBookingItems()
+                ->updateBookingTotal()
+                ->deleteCart();
+        });
+
 
         return $this->booking;
     }
@@ -46,6 +50,7 @@ class CreateBookingAction
     protected function createBooking(): static
     {
         $booking = new Booking;
+        $booking->reference_nr = strtoupper(Str::random(8));
         $booking->user_id = $this->dto->userId;
         $booking->date = $this->dto->date;
         $booking->time = $this->dto->time;

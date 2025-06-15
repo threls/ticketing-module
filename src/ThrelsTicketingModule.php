@@ -13,6 +13,7 @@ use Threls\ThrelsTicketingModule\Actions\DeleteCartAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteCustomRestrictionAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteEventAction;
 use Threls\ThrelsTicketingModule\Actions\DeleteTicketAction;
+use Threls\ThrelsTicketingModule\Actions\FindBookingByRefNrAndLastNameAction;
 use Threls\ThrelsTicketingModule\Actions\GenerateBookingQRCodesAction;
 use Threls\ThrelsTicketingModule\Actions\GenerateTicketPDFsAction;
 use Threls\ThrelsTicketingModule\Actions\GetCartAction;
@@ -133,5 +134,10 @@ class ThrelsTicketingModule
     public function generateTicketPdfs(Booking $booking): void
     {
         app(GenerateTicketPdfsAction::class)->execute($booking);
+    }
+
+    public function findBookingByRefAndLastName(string $ref, string $lastName): Booking
+    {
+        return app(FindBookingByRefNrAndLastNameAction::class)->execute($ref, $lastName);
     }
 }
