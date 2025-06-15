@@ -20,7 +20,7 @@ class CheckTicketDependencyAndLimitAction
     {
         $itemables = collect();
         $cart->items()->each(function (CartItem $cartItem) use (&$itemables) {
-            $itemables->add($cartItem->itemable());
+            $itemables->add($cartItem->itemable);
         });
 
         $cart->items()->each(function (CartItem $cartItem) use ($itemables, $date) {
@@ -29,8 +29,11 @@ class CheckTicketDependencyAndLimitAction
 
             if ($ticket->parent_id) {
                 $parentTicket = Ticket::query()->findOrFail($ticket->parent_id);
-                if (! $itemables->contains($parentTicket)) {
-                    throw new DependentTicketException('You cannot book a '.$ticket->name.' ticket without a '.$parentTicket->name.' ticket.');
+                if (! $itemables->contains(function ($item) use ($ticket) {
+                    /** @var Ticket $item */
+                    return $item->id === $ticket->parent_id;
+                })) {
+                    throw new DependentTicketException('You cannot book a '.$ticket->name.' ticket without a/an '.$parentTicket->name.' ticket.');
                 }
             }
 
