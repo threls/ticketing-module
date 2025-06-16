@@ -16,8 +16,5 @@ class ApplyBookingDiscountDto extends Data
         public string $discountableType,
         public int $amount,
         public string $currency,
-    )
-    {
-    }
-
+    ) {}
 }
