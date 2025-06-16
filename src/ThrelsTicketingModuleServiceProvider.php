@@ -37,6 +37,7 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
                 'create_booking_tickets_table',
                 'add_schemaless_attributes_to_carts_table',
                 'add_reference_nr_to_bookings_table',
+                'create_booking_discounts_table'
             ])
             ->hasCommand(ThrelsTicketingModuleCommand::class);
     }

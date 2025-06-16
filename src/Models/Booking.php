@@ -38,4 +38,9 @@ class Booking extends Model
     {
         return $this->hasMany(BookingTicket::class);
     }
+
+    public function bookingDiscount(): HasMany
+    {
+        return $this->hasMany(BookingDiscount::class);
+    }
 }
