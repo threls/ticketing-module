@@ -9,7 +9,7 @@ class ApplyBookingDiscountAction
 {
     public function execute(ApplyBookingDiscountDto $dto): BookingDiscount
     {
-        $bookingDiscount = new BookingDiscount();
+        $bookingDiscount = new BookingDiscount;
         $bookingDiscount->booking_id = $dto->booking->id;
         $bookingDiscount->discountable_id = $dto->discountableId;
         $bookingDiscount->discountable_type = $dto->discountableType;
@@ -20,5 +20,4 @@ class ApplyBookingDiscountAction
         return $bookingDiscount;
 
     }
-
 }
