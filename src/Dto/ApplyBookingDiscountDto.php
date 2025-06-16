@@ -13,7 +13,7 @@ class ApplyBookingDiscountDto extends Data
     public function __construct(
         public Booking $booking,
         public int $discountableId,
-        public int $discountableType,
+        public string $discountableType,
         public int $amount,
         public string $currency,
     )
