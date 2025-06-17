@@ -6,6 +6,7 @@ use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
@@ -51,5 +52,10 @@ class Booking extends Model
     public function bookingDiscounts(): HasMany
     {
         return $this->hasMany(BookingDiscount::class);
+    }
+
+    public function discountable(): MorphTo
+    {
+        return $this->morphTo('discountable');
     }
 }
