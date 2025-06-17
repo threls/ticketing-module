@@ -14,6 +14,8 @@ use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 /**
  * @property Money|null $amount
  * @property Money|null $vat_amount
+ * @property Money|null $original_amount
+ * @property Money|null $discount_amount
  */
 class Booking extends Model
 {
@@ -27,6 +29,8 @@ class Booking extends Model
             'status' => BookingStatusEnum::class,
             'amount' => MoneyCast::class,
             'vat_amount' => MoneyCast::class,
+            'original_amount' => MoneyCast::class,
+            'discount_amount' => MoneyCast::class,
         ];
     }
 

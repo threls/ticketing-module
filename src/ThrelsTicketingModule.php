@@ -38,7 +38,6 @@ use Threls\ThrelsTicketingModule\Dto\UpdateEventDto;
 use Threls\ThrelsTicketingModule\Dto\UpdateTicketDto;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 use Threls\ThrelsTicketingModule\Models\Booking;
-use Threls\ThrelsTicketingModule\Models\BookingDiscount;
 use Threls\ThrelsTicketingModule\Models\Event;
 use Threls\ThrelsTicketingModule\Models\Ticket;
 
@@ -144,7 +143,7 @@ class ThrelsTicketingModule
         return app(FindBookingByRefNrAndLastNameAction::class)->execute($ref, $lastName);
     }
 
-    public function applyBookingDiscount(ApplyBookingDiscountDto $dto): BookingDiscount
+    public function applyBookingDiscount(ApplyBookingDiscountDto $dto): Booking
     {
         return app(ApplyBookingDiscountAction::class)->execute($dto);
     }
