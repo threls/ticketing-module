@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 
-
 /**
  * @property Money|null $amount
  * @property Money|null $vat_amount
