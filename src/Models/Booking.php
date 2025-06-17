@@ -2,6 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Models;
 
+use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -9,6 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 
+
+/**
+ * @property Money|null $amount
+ * @property Money|null $vat_amount
+ */
 class Booking extends Model
 {
     use SoftDeletes;
@@ -39,7 +45,7 @@ class Booking extends Model
         return $this->hasMany(BookingTicket::class);
     }
 
-    public function bookingDiscount(): HasMany
+    public function bookingDiscounts(): HasMany
     {
         return $this->hasMany(BookingDiscount::class);
     }

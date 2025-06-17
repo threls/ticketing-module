@@ -14,6 +14,7 @@ return new class extends Migration
             $table->morphs('discountable');
             $table->bigInteger('amount');
             $table->string('amount_currency')->default('EUR');
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

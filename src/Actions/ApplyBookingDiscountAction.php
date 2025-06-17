@@ -15,7 +15,10 @@ class ApplyBookingDiscountAction
         $bookingDiscount->discountable_type = $dto->discountableType;
         $bookingDiscount->amount = $dto->amount;
         $bookingDiscount->amount_currency = $dto->currency;
+        $bookingDiscount->email = $dto->email;
         $bookingDiscount->save();
+
+        $dto->booking->amount = $dto->booking->amount->minus($bookingDiscount->amount);
 
         return $bookingDiscount;
 

@@ -2,10 +2,14 @@
 
 namespace Threls\ThrelsTicketingModule\Models;
 
+use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 
+/**
+ * @property Money|null $amount
+ */
 class BookingDiscount extends Model
 {
     protected $guarded = ['id'];
