@@ -4,6 +4,7 @@ namespace Threls\ThrelsTicketingModule;
 
 use Threls\ThrelsTicketingModule\Actions\AddCustomTicketRestrictionAction;
 use Threls\ThrelsTicketingModule\Actions\AddOrUpdateToCartAction;
+use Threls\ThrelsTicketingModule\Actions\ApplyBookingDiscountAction;
 use Threls\ThrelsTicketingModule\Actions\ClearCartAction;
 use Threls\ThrelsTicketingModule\Actions\CreateBookingAction;
 use Threls\ThrelsTicketingModule\Actions\CreateEventAction;
@@ -24,6 +25,7 @@ use Threls\ThrelsTicketingModule\Actions\UpdateEventAction;
 use Threls\ThrelsTicketingModule\Actions\UpdateTicketAction;
 use Threls\ThrelsTicketingModule\Dto\AddCustomTicketRestrictionDto;
 use Threls\ThrelsTicketingModule\Dto\AddOrUpdateToCartDto;
+use Threls\ThrelsTicketingModule\Dto\ApplyBookingDiscountDto;
 use Threls\ThrelsTicketingModule\Dto\CartDto;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
 use Threls\ThrelsTicketingModule\Dto\CreateEventDto;
@@ -139,5 +141,10 @@ class ThrelsTicketingModule
     public function findBookingByRefAndLastName(string $ref, string $lastName): Booking
     {
         return app(FindBookingByRefNrAndLastNameAction::class)->execute($ref, $lastName);
+    }
+
+    public function applyBookingDiscount(ApplyBookingDiscountDto $dto): Booking
+    {
+        return app(ApplyBookingDiscountAction::class)->execute($dto);
     }
 }

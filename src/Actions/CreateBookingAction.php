@@ -55,6 +55,8 @@ class CreateBookingAction
         $booking->time = $this->dto->time;
         $booking->amount = $this->dto->amount;
         $booking->amount_currency = $this->dto->currency;
+        $booking->original_amount = $this->dto->amount;
+        $booking->original_amount_currency = $this->dto->currency;
         $booking->status = $this->dto->status;
         $booking->save();
 
