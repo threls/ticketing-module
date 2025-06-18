@@ -14,6 +14,7 @@ enum BookingStatusEnum: string
         return match ($this) {
             self::PENDING => [self::CONFIRMED, self::CANCELLED],
             self::CONFIRMED => [self::CANCELLED, self::REFUNDED],
+            self::CANCELLED => [self::CONFIRMED],
             default => [],
         };
     }

@@ -219,7 +219,7 @@
             </div>
             <div class="ticket--center--col">
                 <span class="ticket--info--title">Booking Ref.</span>
-                <span  class="ticket--info--content">#{{$booking['id']}}</span>
+                <span  class="ticket--info--content">#{{$booking['reference_nr']}}</span>
             </div>
         </div>
         <div class="ticket--center--row">
