@@ -38,7 +38,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
             );
 
             $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray())
-                ->withBrowsershot(function (Browsershot $browsershot){
+                ->withBrowsershot(function (Browsershot $browsershot) {
                     $browsershot->setNodeBinary(config('ticketing-module.node_path'));
                     if (! app()->environment('local')) {
                         $browsershot->noSandbox();
