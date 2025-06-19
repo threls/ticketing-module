@@ -12,4 +12,6 @@ return [
 
     'chrome_path' => '/usr/bin/chromium-browser',
 
+    'include_path' => '/usr/local/bin',
+
 ];

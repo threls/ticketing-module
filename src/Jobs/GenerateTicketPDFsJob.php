@@ -37,14 +37,14 @@ class GenerateTicketPDFsJob implements ShouldQueue
                 userName: $this->booking->bookingClient->full_name
             );
 
-            $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray())
-                ->withBrowsershot(function (Browsershot $browsershot) {
-                    $browsershot->setNodeBinary(config('ticketing-module.node_path'))
-                        ->setChromePath(config('ticketing-module.chrome_path'));
-                    if (! app()->environment('local')) {
-                        $browsershot->noSandbox();
-                    }
-                });
+            $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
+                $browsershot->setNodeBinary(config('ticketing-module.node_path'))
+                    ->setChromePath(config('ticketing-module.chrome_path'));
+                if (! app()->environment('local')) {
+                    $browsershot->setIncludePath(config('ticketing-module.include_path'))
+                        ->noSandbox();
+                }
+            })->view('ticketing-module::pdf.ticket-template', $dto->toArray());
 
             $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
 
