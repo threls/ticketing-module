@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Threls\ThrelsTicketingModule\Dto\GenerateTicketPdfDto;
@@ -36,7 +37,13 @@ class GenerateTicketPDFsJob implements ShouldQueue
                 userName: $this->booking->bookingClient->full_name
             );
 
-            $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray());
+            $pdf = Pdf::view('ticketing-module::pdf.ticket-template', $dto->toArray())
+                ->withBrowsershot(function (Browsershot $browsershot){
+                    $browsershot->setNodeBinary(config('ticketing-module.node_path'));
+                    if (! app()->environment('local')) {
+                        $browsershot->noSandbox();
+                    }
+                });
 
             $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
 

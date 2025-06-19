@@ -8,4 +8,6 @@ return [
 
     'support_email' => 'test@threls.com',
 
+    'node_path' => '/usr/bin/node',
+
 ];
