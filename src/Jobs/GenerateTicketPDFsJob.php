@@ -38,14 +38,13 @@ class GenerateTicketPDFsJob implements ShouldQueue
             );
 
             $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
-                if (!app()->environment('local')) {
+                if (! app()->environment('local')) {
                     $browsershot
                         ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
                         ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
                         ->noSandbox()                                // Disable sandbox for headless Chromium compatibility
                         ->newHeadless();                             // Run Chromium in headless mode
-                }
-                else{
+                } else {
                     $browsershot->setNodeBinary('/usr/bin/node');
                 }
             })->view('ticketing-module::pdf.ticket-template', $dto->toArray());
