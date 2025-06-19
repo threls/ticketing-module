@@ -8,10 +8,6 @@ return [
 
     'support_email' => 'test@threls.com',
 
-    'node_path' => '/usr/bin/node',
-
     'chrome_path' => '/usr/bin/chromium-browser',
-
-    'include_path' => '/usr/local/bin',
 
 ];

@@ -38,15 +38,16 @@ class GenerateTicketPDFsJob implements ShouldQueue
             );
 
             $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
-
-                $browsershot
-                    ->setCustomTempPath('/tmp')
-                    ->setIncludePath('$PATH:'.config('ticketing-module.include_path'))
-                    ->addChromiumArguments([
-                        'headless=shell'
-                    ])
-                    ->setNodeBinary(config('ticketing-module.node_path'))
-                    ->setChromePath(config('ticketing-module.chrome_path'));
+                if (!app()->environment('local')) {
+                    $browsershot
+                        ->setChromePath('/usr/bin/chromium-browser') // Use manually installed Chromium
+                        ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
+                        ->noSandbox()                                // Disable sandbox for headless Chromium compatibility
+                        ->newHeadless();                             // Run Chromium in headless mode
+                }
+                else{
+                    $browsershot->setNodeBinary('/usr/bin/node');
+                }
             })->view('ticketing-module::pdf.ticket-template', $dto->toArray());
 
             $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
