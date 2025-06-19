@@ -10,4 +10,6 @@ return [
 
     'node_path' => '/usr/bin/node',
 
+    'chrome_path' => '/usr/bin/chromium-browser'
+
 ];
