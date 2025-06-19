@@ -43,7 +43,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
                     ->setCustomTempPath('/tmp')
                     ->setIncludePath('$PATH:'.config('ticketing-module.include_path'))
                     ->addChromiumArguments([
-                        'headless=shell'
+                        'headless=shell',
                     ])
                     ->setNodeBinary(config('ticketing-module.node_path'))
                     ->setChromePath(config('ticketing-module.chrome_path'));
