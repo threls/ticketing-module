@@ -40,7 +40,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
                 if (! app()->environment('local')) {
                     $browsershot
-                        ->setEnvironmentOptions(["XDG_CONFIG_HOME" => "/tmp/google-chrome-for-testing", "XDG_CACHE_HOME" => "/tmp/google-chrome-for-testing"])
+                        ->setEnvironmentOptions(['XDG_CONFIG_HOME' => '/tmp/google-chrome-for-testing', 'XDG_CACHE_HOME' => '/tmp/google-chrome-for-testing'])
                         ->addChromiumArguments([
                             'no-sandbox',
                             'disable-dev-shm-usage',
@@ -49,7 +49,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
                             'disable-crashpad',
                             'no-crashpad',
                             'disable-crash-reporter',
-                            'headless'
+                            'headless',
                         ])
                         ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
                         ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
