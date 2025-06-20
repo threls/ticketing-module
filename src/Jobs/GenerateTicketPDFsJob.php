@@ -43,8 +43,8 @@ class GenerateTicketPDFsJob implements ShouldQueue
 //                        ->setEnvironmentOptions(["XDG_CONFIG_HOME" => "/tmp/google-chrome-for-testing", "XDG_CACHE_HOME" => "/tmp/google-chrome-for-testing"])
                         ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
 //                        ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
-                        ->noSandbox()   ;                             // Disable sandbox for headless Chromium compatibility
-//                        ->newHeadless();                             // Run Chromium in headless mode
+                        ->noSandbox();                             // Disable sandbox for headless Chromium compatibility
+                    //                        ->newHeadless();                             // Run Chromium in headless mode
                 } else {
                     $browsershot->setNodeBinary('/usr/bin/node');
                 }
