@@ -40,21 +40,11 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
                 if (! app()->environment('local')) {
                     $browsershot
-                        ->setEnvironmentOptions(['XDG_CONFIG_HOME' => '/tmp/google-chrome-for-testing', 'XDG_CACHE_HOME' => '/tmp/google-chrome-for-testing'])
-                        ->addChromiumArguments([
-                            'no-sandbox',
-                            'disable-dev-shm-usage',
-                            'disable-gpu',
-                            'disable-software-rasterizer',
-                            'disable-crashpad',
-                            'no-crashpad',
-                            'disable-crash-reporter',
-                            'headless',
-                        ])
+//                        ->setEnvironmentOptions(["XDG_CONFIG_HOME" => "/tmp/google-chrome-for-testing", "XDG_CACHE_HOME" => "/tmp/google-chrome-for-testing"])
                         ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
-                        ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
-                        ->noSandbox()                                // Disable sandbox for headless Chromium compatibility
-                        ->newHeadless();                             // Run Chromium in headless mode
+//                        ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
+                        ->noSandbox()   ;                             // Disable sandbox for headless Chromium compatibility
+//                        ->newHeadless();                             // Run Chromium in headless mode
                 } else {
                     $browsershot->setNodeBinary('/usr/bin/node');
                 }
