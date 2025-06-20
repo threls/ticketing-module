@@ -10,6 +10,8 @@ class ApplyBookingDiscountAction
 {
     protected ApplyBookingDiscountDto $applyBookingDiscountDto;
 
+    protected BookingDiscount $bookingDiscount;
+
     public function execute(ApplyBookingDiscountDto $dto): Booking
     {
         $this->applyBookingDiscountDto = $dto;
@@ -32,6 +34,8 @@ class ApplyBookingDiscountAction
         $bookingDiscount->email = $this->applyBookingDiscountDto->email;
         $bookingDiscount->save();
 
+        $this->bookingDiscount = $bookingDiscount;
+
         return $this;
     }
 
@@ -39,10 +43,9 @@ class ApplyBookingDiscountAction
     {
         $this->applyBookingDiscountDto->booking->original_amount = $this->applyBookingDiscountDto->booking->amount;
         $this->applyBookingDiscountDto->booking->original_amount_currency = $this->applyBookingDiscountDto->currency;
-        $this->applyBookingDiscountDto->booking->discount_amount = $this->applyBookingDiscountDto->amount;
-        $this->applyBookingDiscountDto->booking->discount_amount_currency = $this->applyBookingDiscountDto->currency;
-        $this->applyBookingDiscountDto->booking->amount = $this->applyBookingDiscountDto->booking->amount->minus($this->applyBookingDiscountDto->amount);
+        $this->applyBookingDiscountDto->booking->discount_amount = $this->bookingDiscount->amount;
+        $this->applyBookingDiscountDto->booking->discount_amount_currency = $this->bookingDiscount->currency;
+        $this->applyBookingDiscountDto->booking->amount = $this->applyBookingDiscountDto->booking->amount->minus($this->bookingDiscount->amount);
         $this->applyBookingDiscountDto->booking->save();
-
     }
 }
