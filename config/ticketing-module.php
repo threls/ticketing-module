@@ -8,6 +8,6 @@ return [
 
     'support_email' => 'test@threls.com',
 
-    'chrome_path' => '/usr/bin/google-chrome-stable',
+    'chrome_path' => '/usr/bin/google-chrome',
 
 ];
