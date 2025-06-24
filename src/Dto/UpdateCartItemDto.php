@@ -2,7 +2,6 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
-use Brick\Money\Money;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Data;
