@@ -2,6 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
+use Brick\Money\Money;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\Validation\Min;
 use Spatie\LaravelData\Data;
@@ -13,6 +14,7 @@ class UpdateCartItemDto extends Data
     public function __construct(
         public readonly int $itemableId,
         public readonly string $itemableType,
+        public ?array $options,
         #[Min(0)]
         public readonly int $quantity,
     ) {}
