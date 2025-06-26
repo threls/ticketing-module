@@ -42,7 +42,7 @@ class Cart extends \Binafy\LaravelCart\Models\Cart
 
     public function getVatAttribute(): Money
     {
-        return Money::of($this->extra_attributes->vat_amount['amount'], $this->extra_attributes->vat_amount['currency']);
+        return Money::of($this->extra_attributes->vat_amount['amount'] ?? 0, $this->extra_attributes->vat_amount['currency']);
 
     }
 }
