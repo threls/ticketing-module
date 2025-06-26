@@ -14,7 +14,6 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  */
 class Cart extends \Binafy\LaravelCart\Models\Cart
 {
-
     public $casts = [
         'extra_attributes' => SchemalessAttributes::class,
     ];
@@ -28,7 +27,6 @@ class Cart extends \Binafy\LaravelCart\Models\Cart
     {
         return $this->extra_attributes->modelScope();
     }
-
 
     public function getTotalAttribute(): Money
     {

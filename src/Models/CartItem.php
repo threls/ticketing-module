@@ -12,7 +12,6 @@ use Brick\Money\Money;
  */
 class CartItem extends \Binafy\LaravelCart\Models\CartItem
 {
-
     public function getTotalAttribute(): Money
     {
         return Money::of($this->getOption('total'), $this->getOption('total_currency'));
@@ -33,8 +32,7 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
 
     public function getVatAttribute(): ?Money
     {
-        return $this->getOption('vat') ? Money::of($this->getOption('vat'), $this->getOption('vat_currency')): null;
+        return $this->getOption('vat') ? Money::of($this->getOption('vat'), $this->getOption('vat_currency')) : null;
 
     }
-
 }
