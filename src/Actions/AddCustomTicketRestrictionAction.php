@@ -29,14 +29,17 @@ class AddCustomTicketRestrictionAction
         $ticket = Ticket::findOrFail($this->dto->ticketId);
 
         $overlappingRestrictions = $ticket->customRestrictions()
-            ->whereBetween('from_date', [$this->dto->fromDate, $this->dto->toDate])
-            ->orWhereBetween('to_date', [$this->dto->fromDate, $this->dto->toDate])
-            ->orWhere(function ($query) {
-                $query->whereDate('from_date', '<=', $this->dto->fromDate)
-                    ->whereDate('to_date', '>=', $this->dto->toDate);
-            })->count();
+            ->where(function ($query) {
+                $query->whereBetween('from_date', [$this->dto->fromDate, $this->dto->toDate])
+                    ->orWhereBetween('to_date', [$this->dto->fromDate, $this->dto->toDate])
+                    ->orWhere(function ($query) {
+                        $query->whereDate('from_date', '<=', $this->dto->fromDate)
+                            ->whereDate('to_date', '>=', $this->dto->toDate);
+                    });
+            })
+            ->exists();
 
-        if ($overlappingRestrictions) {
+        if ($overlappingRestrictions)  {
             throw new BadRequestHttpException('Custom restrictions exists for the specified period.');
         }
 

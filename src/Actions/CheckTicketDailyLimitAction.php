@@ -5,6 +5,8 @@ namespace Threls\ThrelsTicketingModule\Actions;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
+use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
 use Threls\ThrelsTicketingModule\Models\CustomRestrictionItem;
 use Threls\ThrelsTicketingModule\Models\Ticket;
@@ -51,7 +53,8 @@ class CheckTicketDailyLimitAction
     {
         $this->ticketsNr = BookingItem::query()
             ->whereHas('booking', function ($query) {
-                $query->whereDate('date', $this->date);
+                $query->whereDate('date', $this->date)
+                ->whereIn('status', [BookingStatusEnum::CONFIRMED, BookingStatusEnum::PENDING]);
             })
             ->where('ticket_id', $this->ticket->id)
             ->selectRaw('SUM(pax_number * qty) as total')
