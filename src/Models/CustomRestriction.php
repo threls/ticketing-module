@@ -5,6 +5,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 class CustomRestriction extends Model
 {
@@ -17,11 +18,11 @@ class CustomRestriction extends Model
 
     public function ticket(): BelongsTo
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
     }
 
     public function customRestrictionItems(): HasMany
     {
-        return $this->hasMany(CustomRestrictionItem::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('customRestrictionItem'));
     }
 }

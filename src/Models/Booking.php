@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 /**
  * @property Money|null $amount
@@ -36,22 +37,22 @@ class Booking extends Model
 
     public function bookingClient(): HasOne
     {
-        return $this->hasOne(BookingClientDetail::class);
+        return $this->hasOne(TicketingModelResolverManager::getModelClass('bookingClientDetail'));
     }
 
     public function items(): HasMany
     {
-        return $this->hasMany(BookingItem::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('bookingItem'));
     }
 
     public function bookingTickets(): HasMany
     {
-        return $this->hasMany(BookingTicket::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('bookingTicket'));
     }
 
     public function bookingDiscounts(): HasMany
     {
-        return $this->hasMany(BookingDiscount::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('bookingDiscount'));
     }
 
     public function discountable(): MorphTo

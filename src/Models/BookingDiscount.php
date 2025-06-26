@@ -6,6 +6,7 @@ use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 /**
  * @property Money|null $amount
@@ -23,6 +24,6 @@ class BookingDiscount extends Model
 
     public function booking(): BelongsTo
     {
-        return $this->belongsTo(Booking::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('booking'));
     }
 }
