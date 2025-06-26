@@ -14,13 +14,13 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
 {
     public function getTotalAttribute(): Money
     {
-        return Money::of($this->getOption('total'), $this->getOption('total_currency'));
+        return Money::ofMinor($this->getOption('total'), $this->getOption('total_currency'));
 
     }
 
     public function getPriceAttribute(): Money
     {
-        return Money::of($this->getOption('price'), $this->getOption('price_currency'));
+        return Money::ofMinor($this->getOption('price'), $this->getOption('price_currency'));
 
     }
 
@@ -32,7 +32,7 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
 
     public function getVatAttribute(): ?Money
     {
-        return $this->getOption('vat') ? Money::of($this->getOption('vat'), $this->getOption('vat_currency')) : null;
+        return $this->getOption('vat') ? Money::ofMinor($this->getOption('vat'), $this->getOption('vat_currency')) : null;
 
     }
 }

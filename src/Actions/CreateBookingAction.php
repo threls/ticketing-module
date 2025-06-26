@@ -36,7 +36,7 @@ class CreateBookingAction
                 ->deleteCart();
         });
 
-        return $this->booking;
+        return $this->booking->fresh();
     }
 
     protected function checkTicketDependencyAndLimit(): static
@@ -91,9 +91,9 @@ class CreateBookingAction
                 'event_id' => $itemable->event->id,
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
-                'amount' => $item->price->getMinorAmount()->toInt(),
+                'amount' => $item->price,
                 'amount_currency' => $itemable->price_currency,
-                'total_amount' => $item->total->getMinorAmount()->toInt(),
+                'total_amount' => $item->total,
                 'total_amount_currency' => $itemable->price_currency,
                 'vat_amount' => $item->vat->getMinorAmount()->toInt(),
                 'vat_amount_currency' => $itemable->price_currency,
@@ -108,12 +108,9 @@ class CreateBookingAction
 
     protected function updateBookingTotal(): static
     {
-        $totalAmount = $this->booking->items()->sum('total_amount');
-        $vatAmount = $this->booking->items()->sum('vat_amount');
-
         $this->booking->update([
-            'amount' => (int) $totalAmount,
-            'vat_amount' => (int) $vatAmount,
+            'amount' => $this->cart->total,
+            'vat_amount' => $this->cart->vat,
         ]);
 
         return $this;
