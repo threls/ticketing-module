@@ -23,10 +23,11 @@ return [
 
     'chrome_path' => '/usr/bin/google-chrome',
 
+
     'models' => [
         'ticket' => Ticket::class,
         'ticketRestriction' => TicketRestriction::class,
-        'CustomRestriction' => CustomRestriction::class,
+        'customRestriction' => CustomRestriction::class,
         'customRestrictionItem' => CustomRestrictionItem::class,
         'booking' => Booking::class,
         'bookingTicket' => BookingTicket::class,
@@ -36,6 +37,6 @@ return [
         'cart' => Cart::class,
         'cartItem' => CartItem::class,
         'event' => Event::class,
-    ],
+    ]
 
 ];

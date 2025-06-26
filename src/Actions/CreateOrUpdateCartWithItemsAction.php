@@ -81,6 +81,7 @@ class CreateOrUpdateCartWithItemsAction
                 ],
                 [
                     'quantity' => $dto->quantity,
+                    'options' => $dto->options,
                 ]
             );
         }
