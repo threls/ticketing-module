@@ -2,12 +2,12 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-use Binafy\LaravelCart\Models\CartItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\Cart;
+use Threls\ThrelsTicketingModule\Models\CartItem;
 
 class CreateBookingAction
 {
@@ -91,11 +91,11 @@ class CreateBookingAction
                 'event_id' => $itemable->event->id,
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
-                'amount' => $itemable->price->getMinorAmount()->toInt(),
+                'amount' => $item->price->getMinorAmount()->toInt(),
                 'amount_currency' => $itemable->price_currency,
-                'total_amount' => $itemable->price->getMinorAmount()->toInt() * $item->quantity,
+                'total_amount' => $item->total->getMinorAmount()->toInt(),
                 'total_amount_currency' => $itemable->price_currency,
-                'vat_amount' => isset($itemable->vat_amount) ? $itemable->vat_amount->getMinorAmount()->toInt() * $item->quantity : null,
+                'vat_amount' => $item->vat->getMinorAmount()->toInt(),
                 'vat_amount_currency' => $itemable->price_currency,
                 'vat_id' => $itemable->vat_id ?? null,
                 'pax_number' => $itemable->pax_number ?? null,
