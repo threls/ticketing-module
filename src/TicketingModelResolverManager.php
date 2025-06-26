@@ -52,6 +52,7 @@ class TicketingModelResolverManager
     public static function newModel(string $name)
     {
         $modelClass = static::getModelClass($name);
+
         return new $modelClass;
     }
 }

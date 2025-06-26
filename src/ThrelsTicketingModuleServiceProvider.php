@@ -50,5 +50,4 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
         );
         TicketingModelResolverManager::resolveModels();
     }
-
 }
