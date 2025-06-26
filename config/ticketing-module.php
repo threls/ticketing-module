@@ -1,6 +1,19 @@
 <?php
 
 // config for Threls/ThrelsTicketingModule
+use Binafy\LaravelCart\Models\CartItem;
+use Threls\ThrelsTicketingModule\Models\Booking;
+use Threls\ThrelsTicketingModule\Models\BookingClientDetail;
+use Threls\ThrelsTicketingModule\Models\BookingDiscount;
+use Threls\ThrelsTicketingModule\Models\BookingItem;
+use Threls\ThrelsTicketingModule\Models\BookingTicket;
+use Threls\ThrelsTicketingModule\Models\Cart;
+use Threls\ThrelsTicketingModule\Models\CustomRestriction;
+use Threls\ThrelsTicketingModule\Models\CustomRestrictionItem;
+use Threls\ThrelsTicketingModule\Models\Event;
+use Threls\ThrelsTicketingModule\Models\Ticket;
+use Threls\ThrelsTicketingModule\Models\TicketRestriction;
+
 return [
 
     // base64 company logo
@@ -9,5 +22,21 @@ return [
     'support_email' => 'test@threls.com',
 
     'chrome_path' => '/usr/bin/google-chrome',
+
+
+    'models' => [
+        'ticket' => Ticket::class,
+        'ticketRestriction' => TicketRestriction::class,
+        'CustomRestriction' => CustomRestriction::class,
+        'customRestrictionItem' => CustomRestrictionItem::class,
+        'booking' => Booking::class,
+        'bookingTicket' => BookingTicket::class,
+        'bookingDiscount' => BookingDiscount::class,
+        'bookingClientDetail' => BookingClientDetail::class,
+        'bookingItem' => BookingItem::class,
+        'cart' => Cart::class,
+        'cartItem' => CartItem::class,
+        'event' => Event::class,
+    ]
 
 ];

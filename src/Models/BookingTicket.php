@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 class BookingTicket extends Model implements HasMedia
 {
@@ -25,16 +26,16 @@ class BookingTicket extends Model implements HasMedia
 
     public function booking(): BelongsTo
     {
-        return $this->belongsTo(Booking::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('booking'));
     }
 
     public function ticket(): BelongsTo
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
     }
 
     public function bookingItem(): BelongsTo
     {
-        return $this->belongsTo(BookingItem::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('bookingItem'));
     }
 }

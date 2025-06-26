@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 class BookingItem extends Model
 {
@@ -25,21 +26,21 @@ class BookingItem extends Model
 
     public function booking(): BelongsTo
     {
-        return $this->belongsTo(Booking::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('booking'));
     }
 
     public function event(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('event'));
     }
 
     public function ticket(): BelongsTo
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
     }
 
     public function bookingTickets(): HasMany
     {
-        return $this->hasMany(BookingTicket::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('bookingTicket'));
     }
 }

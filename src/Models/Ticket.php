@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 /**
  * @property Money|null $price
@@ -30,17 +31,17 @@ class Ticket extends Model implements Cartable
 
     public function event(): BelongsTo
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('event'));
     }
 
     public function restrictions(): HasMany
     {
-        return $this->hasMany(TicketRestriction::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('ticketRestriction'));
     }
 
     public function customRestrictions(): HasMany
     {
-        return $this->hasMany(CustomRestriction::class);
+        return $this->hasMany(TicketingModelResolverManager::getModelClass('customRestriction'));
     }
 
     public function getPrice(): float

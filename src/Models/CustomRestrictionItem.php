@@ -5,6 +5,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Threls\ThrelsTicketingModule\Enums\TicketRestrictionEnum;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 class CustomRestrictionItem extends Model
 {
@@ -16,11 +17,11 @@ class CustomRestrictionItem extends Model
 
     public function customRestriction(): BelongsTo
     {
-        return $this->belongsTo(CustomRestriction::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('customRestriction'));
     }
 
     public function ticketRestriction(): BelongsTo
     {
-        return $this->belongsTo(TIcketRestriction::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticketRestriction'));
     }
 }

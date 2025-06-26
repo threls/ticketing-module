@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Enums\TicketRestrictionEnum;
+use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 class TicketRestriction extends Model
 {
@@ -17,6 +18,6 @@ class TicketRestriction extends Model
 
     public function ticket(): BelongsTo
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
     }
 }

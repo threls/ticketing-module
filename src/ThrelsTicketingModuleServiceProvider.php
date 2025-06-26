@@ -48,6 +48,7 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
         $this->app['events']->listen(
             BookingConfirmedEvent::class, GenerateBookingTicketsListener::class
         );
-
+        TicketingModelResolverManager::resolveModels();
     }
+
 }
