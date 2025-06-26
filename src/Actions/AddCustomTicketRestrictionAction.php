@@ -39,7 +39,7 @@ class AddCustomTicketRestrictionAction
             })
             ->exists();
 
-        if ($overlappingRestrictions)  {
+        if ($overlappingRestrictions) {
             throw new BadRequestHttpException('Custom restrictions exists for the specified period.');
         }
 
