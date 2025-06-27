@@ -17,9 +17,9 @@ use Threls\ThrelsTicketingModule\Models\TicketRestriction;
 
 class TicketingModelResolverManager
 {
-    protected static array $models = [];
+    public static array $models = [];
 
-    protected static array $defaultModels = [
+    public static array $defaultModels = [
         'ticket' => Ticket::class,
         'ticketRestriction' => TicketRestriction::class,
         'customRestriction' => CustomRestriction::class,

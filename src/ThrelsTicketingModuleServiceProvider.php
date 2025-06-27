@@ -2,6 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Threls\ThrelsTicketingModule\Commands\ThrelsTicketingModuleCommand;
@@ -49,5 +50,11 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
             BookingConfirmedEvent::class, GenerateBookingTicketsListener::class
         );
         TicketingModelResolverManager::resolveModels();
+    }
+
+    public function packageBooted()
+    {
+        Relation::morphMap(config('ticketing-module.models', TicketingModelResolverManager::$defaultModels));
+
     }
 }
