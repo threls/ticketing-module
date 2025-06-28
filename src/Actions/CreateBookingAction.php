@@ -113,8 +113,8 @@ class CreateBookingAction
         $vatAmount = $this->booking->items()->sum('vat_amount');
 
         $this->booking->update([
-            'amount' => Money::ofMinor($totalAmount, $this->booking->amount_currency),
-            'vat_amount' => Money::ofMinor($vatAmount, $this->booking->vat_amount_currency),
+            'amount' => Money::ofMinor($totalAmount, $this->dto->currency ?? 'EUR'),
+            'vat_amount' => Money::ofMinor($vatAmount, $this->dto->currency ?? 'EUR'),
         ]);
 
         return $this;

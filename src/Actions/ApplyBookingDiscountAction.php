@@ -2,6 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
+use Brick\Money\Money;
 use Threls\ThrelsTicketingModule\Dto\ApplyBookingDiscountDto;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingDiscount;
@@ -45,6 +46,7 @@ class ApplyBookingDiscountAction
         $this->applyBookingDiscountDto->booking->original_amount_currency = $this->applyBookingDiscountDto->currency;
         $this->applyBookingDiscountDto->booking->discount_amount = $this->bookingDiscount->amount;
         $this->applyBookingDiscountDto->booking->discount_amount_currency = $this->bookingDiscount->currency;
+        $this->applyBookingDiscountDto->booking->vat_amount = Money::ofMinor($this->applyBookingDiscountDto->vatAfterDiscount, $this->applyBookingDiscountDto->currency);
         $this->applyBookingDiscountDto->booking->amount = $this->applyBookingDiscountDto->booking->amount->minus($this->bookingDiscount->amount);
         $this->applyBookingDiscountDto->booking->save();
     }
