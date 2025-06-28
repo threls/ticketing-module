@@ -54,9 +54,9 @@ class Ticket extends Model implements Cartable
         return $this->belongsTo(VatRate::class, 'vat_id');
     }
 
-    public function getPrice(): Money
+    public function getPrice(): float
     {
-        return $this->price;
+        return $this->price->getAmount()->toFloat();
     }
 
     public function getName(): string
@@ -67,5 +67,10 @@ class Ticket extends Model implements Cartable
     public function getVatAmount(): Money
     {
         return $this->vat_amount;
+    }
+
+    public function getAmount(): Money
+    {
+        return $this->price;
     }
 }
