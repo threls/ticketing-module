@@ -41,7 +41,7 @@ class CheckTicketDailyLimitAction
             ->whereDate('to_date', '>=', $this->date)
             ->first();
         if ($customRestriction) {
-            return $customRestriction->customRestrictonItems;
+            return $customRestriction->customRestrictionItems;
         } else {
             return $this->ticket->restrictions;
         }
