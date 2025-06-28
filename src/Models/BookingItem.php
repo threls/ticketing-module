@@ -43,4 +43,9 @@ class BookingItem extends Model
     {
         return $this->hasMany(TicketingModelResolverManager::getModelClass('bookingTicket'));
     }
+
+    public function vatRate(): BelongsTo
+    {
+        return $this->belongsTo(VatRate::class, 'vat_id');
+    }
 }
