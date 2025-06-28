@@ -2,6 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
+use Brick\Money\Money;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Threls\ThrelsTicketingModule\Dto\CreateBookingDto;
@@ -112,8 +113,8 @@ class CreateBookingAction
         $vatAmount = $this->booking->items()->sum('vat_amount');
 
         $this->booking->update([
-            'amount' => $totalAmount,
-            'vat_amount' => $vatAmount,
+            'amount' => Money::ofMinor($totalAmount, $this->booking->amount_currency),
+            'vat_amount' => Money::ofMinor($vatAmount, $this->booking->vat_amount_currency),
         ]);
 
         return $this;
