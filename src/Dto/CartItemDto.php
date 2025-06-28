@@ -2,11 +2,11 @@
 
 namespace Threls\ThrelsTicketingModule\Dto;
 
-use Binafy\LaravelCart\Cartable;
 use Binafy\LaravelCart\Models\CartItem;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
+use Threls\ThrelsTicketingModule\Contracts\Cartable;
 
 #[MapName(SnakeCaseMapper::class)]
 class CartItemDto extends Data

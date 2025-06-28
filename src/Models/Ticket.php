@@ -2,13 +2,13 @@
 
 namespace Threls\ThrelsTicketingModule\Models;
 
-use Binafy\LaravelCart\Cartable;
 use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
+use Threls\ThrelsTicketingModule\Contracts\Cartable;
 use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
 /**
@@ -44,11 +44,6 @@ class Ticket extends Model implements Cartable
         return $this->hasMany(TicketingModelResolverManager::getModelClass('customRestriction'));
     }
 
-    public function getPrice(): float
-    {
-        return $this->price->getAmount()->toFloat();
-    }
-
     public function parent(): BelongsTo
     {
         return $this->belongsTo(self::class, 'parent_id');
@@ -57,5 +52,20 @@ class Ticket extends Model implements Cartable
     public function vatRate(): BelongsTo
     {
         return $this->belongsTo(VatRate::class, 'vat_id');
+    }
+
+    public function getPrice(): Money
+    {
+        return $this->price;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getVatAmount(): Money
+    {
+        return $this->vat_amount;
     }
 }

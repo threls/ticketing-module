@@ -36,7 +36,7 @@ class CreateBookingAction
                 ->deleteCart();
         });
 
-        return $this->booking->fresh();
+        return $this->booking;
     }
 
     protected function checkTicketDependencyAndLimit(): static
@@ -108,9 +108,12 @@ class CreateBookingAction
 
     protected function updateBookingTotal(): static
     {
+        $totalAmount = $this->booking->items()->sum('total_amount');
+        $vatAmount = $this->booking->items()->sum('vat_amount');
+
         $this->booking->update([
-            'amount' => $this->cart->total,
-            'vat_amount' => $this->cart->vat,
+            'amount' => $totalAmount,
+            'vat_amount' => $vatAmount,
         ]);
 
         return $this;

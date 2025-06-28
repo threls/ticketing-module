@@ -2,13 +2,13 @@
 
 namespace Threls\ThrelsTicketingModule;
 
-use Binafy\LaravelCart\Models\CartItem;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingClientDetail;
 use Threls\ThrelsTicketingModule\Models\BookingDiscount;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
 use Threls\ThrelsTicketingModule\Models\BookingTicket;
 use Threls\ThrelsTicketingModule\Models\Cart;
+use Threls\ThrelsTicketingModule\Models\CartItem;
 use Threls\ThrelsTicketingModule\Models\CustomRestriction;
 use Threls\ThrelsTicketingModule\Models\CustomRestrictionItem;
 use Threls\ThrelsTicketingModule\Models\Event;
