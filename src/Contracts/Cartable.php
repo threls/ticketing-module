@@ -7,7 +7,8 @@ use Brick\Money\Money;
 interface Cartable
 {
     public function getName(): string;
-    public function getPrice(): Money;
-    public function getVatAmount(): Money;
 
+    public function getPrice(): Money;
+
+    public function getVatAmount(): Money;
 }
