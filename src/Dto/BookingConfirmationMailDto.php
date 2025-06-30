@@ -10,7 +10,7 @@ class BookingConfirmationMailDto extends Data
 {
     public function __construct(
         public string $userName,
-        public int $bookingId,
+        public int|string $bookingId,
         public Carbon $bookingDate,
         public Collection $attachments,
     ) {}
