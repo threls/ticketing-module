@@ -7,7 +7,7 @@ Thank you for your purchase!
 
 Here are your booking details:
 
-- **Booking Reference:** {{ $bookingId }}
+- **Booking Reference:** {{ $bookingReference }}
 - **Date:** {{ \Carbon\Carbon::parse($bookingDate)->format('d M, Y') }}
 
 <br>
