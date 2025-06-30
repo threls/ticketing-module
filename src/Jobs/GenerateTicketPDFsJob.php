@@ -11,6 +11,7 @@ use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Threls\ThrelsTicketingModule\Dto\GenerateTicketPdfDto;
+use Threls\ThrelsTicketingModule\Events\TicketPdfsGeneratedEvent;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingTicket;
 
@@ -54,6 +55,8 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
 
         });
+
+        TicketPdfsGeneratedEvent::dispatch($this->booking);
 
     }
 }
