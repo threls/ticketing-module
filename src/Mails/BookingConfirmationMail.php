@@ -44,6 +44,7 @@ class BookingConfirmationMail extends Mailable
                 if (is_string($attachment) && filter_var($attachment, FILTER_VALIDATE_URL)) {
                     return Attachment::fromUrl($attachment);
                 }
+
                 return null;
             })
             ->all();
