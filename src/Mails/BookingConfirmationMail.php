@@ -3,6 +3,7 @@
 namespace Threls\ThrelsTicketingModule\Mails;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -33,8 +34,18 @@ class BookingConfirmationMail extends Mailable
 
     public function attachments(): array
     {
-        return $this->dto->attachments
-            ->map(fn (Media $media) => $media->toMailAttachment())
+
+        return collect($this->dto->attachments)
+            ->map(function ($attachment) {
+                if ($attachment instanceof Media) {
+                    return $attachment->toMailAttachment();
+                }
+
+                if (is_string($attachment) && filter_var($attachment, FILTER_VALIDATE_URL)) {
+                    return Attachment::fromUrl($attachment);
+                }
+                return null;
+            })
             ->all();
     }
 }
