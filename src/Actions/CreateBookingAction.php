@@ -92,7 +92,7 @@ class CreateBookingAction
                 'event_id' => $itemable->event->id,
                 'ticket_id' => $itemable->id,
                 'qty' => $item->quantity,
-                'amount' => $item->price->getMinorAmount()->toInt(),
+                'amount' => $item->discounted_price->getMinorAmount()->toInt(),
                 'amount_currency' => $itemable->price_currency,
                 'total_amount' => $item->total->getMinorAmount()->toInt(),
                 'total_amount_currency' => $itemable->price_currency,
