@@ -32,6 +32,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $dto = new GenerateTicketPdfDto(
                 eventName: $ticket->bookingItem->event->name,
                 booking: $this->booking,
+                ticketNumber: $ticket->ticket_number,
                 ticket: $ticket->ticket,
                 item: $ticket->bookingItem,
                 qrCode: $ticket->hasMedia(BookingTicket::MEDIA_QR_CODE) ? $ticket->getFirstMedia(BookingTicket::MEDIA_QR_CODE) : null,

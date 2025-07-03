@@ -13,6 +13,7 @@ class GenerateTicketPdfDto extends Data
     public function __construct(
         public string $eventName,
         public Booking $booking,
+        public string $ticketNumber,
         public Ticket $ticket,
         public BookingItem $item,
         public ?Media $qrCode,
