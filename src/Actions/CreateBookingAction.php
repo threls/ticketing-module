@@ -50,6 +50,7 @@ class CreateBookingAction
     protected function createBooking(): static
     {
         $booking = new Booking;
+        $booking->event_id = $this->dto->eventId;
         $booking->reference_nr = strtoupper(Str::random(8));
         $booking->user_id = $this->dto->userId;
         $booking->date = $this->dto->date;

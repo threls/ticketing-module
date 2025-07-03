@@ -4,6 +4,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 
 use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -58,5 +59,10 @@ class Booking extends Model
     public function discountable(): MorphTo
     {
         return $this->morphTo('discountable');
+    }
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 }
