@@ -39,7 +39,7 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
 
     public function getVatAttribute(): ?Money
     {
-        return !is_null($this->getOption('vat')) ? Money::ofMinor($this->getOption('vat'), $this->getOption('vat_currency')) : null;
+        return ! is_null($this->getOption('vat')) ? Money::ofMinor($this->getOption('vat'), $this->getOption('vat_currency')) : null;
 
     }
 }

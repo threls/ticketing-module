@@ -13,7 +13,7 @@ class CreateBookingDto extends Data
 {
     public function __construct(
         public int $cartId,
-        public ?int $eventId = null,
+        public ?int $eventId,
         public BookingClientDto $bookingClient,
         public ?int $userId,
         public Carbon $date,
