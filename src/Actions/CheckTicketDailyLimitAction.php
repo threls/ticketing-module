@@ -21,14 +21,17 @@ class CheckTicketDailyLimitAction
 
     protected Collection $restrictions;
 
-    public function execute(Ticket $ticket, Carbon $date)
+    protected int $quantity;
+
+    public function execute(Ticket $ticket, Carbon $date, int $quantity = 0)
     {
         $this->ticket = $ticket;
         $this->date = $date;
+        $this->quantity = $quantity;
 
         $this->restrictions = $this->getRestrictions();
 
-        $this->countTickets()
+        $this->countExistingTickets()
             ->checkLimits();
 
     }
@@ -48,7 +51,7 @@ class CheckTicketDailyLimitAction
 
     }
 
-    protected function countTickets(): static
+    protected function countExistingTickets(): static
     {
         $this->ticketsNr = BookingItem::query()
             ->whereHas('booking', function ($query) {
@@ -66,9 +69,11 @@ class CheckTicketDailyLimitAction
     {
         $dayNumber = $this->date->day;
 
-        $this->restrictions->each(function (CustomRestrictionItem|TicketRestriction $restriction) use ($dayNumber) {
+        $totalNr = $this->ticketsNr + $this->quantity;
+
+        $this->restrictions->each(function (CustomRestrictionItem|TicketRestriction $restriction) use ($dayNumber, $totalNr) {
             if ($restriction->key->getDayFromRestrictionName() == $dayNumber) {
-                if ($this->ticketsNr == (int) $restriction->value) {
+                if ($totalNr == (int) $restriction->value) {
                     throw new BadRequestHttpException('Daily limit reached for '.$this->ticket->name.' ticket.');
                 }
             }
