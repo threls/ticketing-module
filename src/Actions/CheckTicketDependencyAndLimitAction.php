@@ -58,7 +58,7 @@ class CheckTicketDependencyAndLimitAction
                 }
             }
 
-            $this->checkTicketDailyLimitAction->execute($ticket, $date);
+            $this->checkTicketDailyLimitAction->execute($ticket, $date, $cartItemDto->quantity);
 
         });
 
