@@ -73,8 +73,8 @@ class CheckTicketDailyLimitAction
 
         $this->restrictions->each(function (CustomRestrictionItem|TicketRestriction $restriction) use ($dayNumber, $totalNr) {
             if ($restriction->key->getDayFromRestrictionName() == $dayNumber) {
-                if ($totalNr >= (int)$restriction->value) {
-                    throw new BadRequestHttpException('Daily limit reached for ' . $this->ticket->name . ' ticket.');
+                if ($totalNr >= (int) $restriction->value) {
+                    throw new BadRequestHttpException('Daily limit reached for '.$this->ticket->name.' ticket.');
                 }
             }
         });
