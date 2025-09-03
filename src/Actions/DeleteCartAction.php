@@ -2,8 +2,6 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-
-
 use Threls\ThrelsTicketingModule\Models\Cart;
 
 class DeleteCartAction
