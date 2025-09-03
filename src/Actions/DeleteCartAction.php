@@ -2,7 +2,7 @@
 
 namespace Threls\ThrelsTicketingModule\Actions;
 
-use Binafy\LaravelCart\Models\Cart;
+use Threls\ThrelsTicketingModule\Models\Cart;
 
 class DeleteCartAction
 {
