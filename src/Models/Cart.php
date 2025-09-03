@@ -5,6 +5,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 use Brick\Money\Money;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
@@ -14,6 +15,8 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
  */
 class Cart extends \Binafy\LaravelCart\Models\Cart
 {
+    use SoftDeletes;
+
     public $casts = [
         'extra_attributes' => SchemalessAttributes::class,
     ];
