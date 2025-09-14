@@ -23,14 +23,16 @@ class CreateOrUpdateCartWithItemsAction
 
     ) {}
 
-    public function execute(CreateOrUpdateCartWithItemsDto $dto)
+    public function execute(CreateOrUpdateCartWithItemsDto $dto, bool $checkLimits): CartDto
     {
         $this->dto = $dto;
 
-        DB::transaction(function () {
-            $this->getOrCreateCart()
-                ->checkTicketDependencyAndLimit()
-                ->createCartItems();
+        DB::transaction(function () use ($checkLimits) {
+            $this->getOrCreateCart();
+            if ($checkLimits){
+                $this->checkTicketDependencyAndLimit();
+            }
+            $this->createCartItems();
         });
 
         return CartDto::from($this->cart->fresh());

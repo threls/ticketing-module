@@ -53,9 +53,9 @@ class ThrelsTicketingModule
         return app(CreateTicketAction::class)->execute($dto);
     }
 
-    public function createOrUpdateCartWithItems(CreateOrUpdateCartWithItemsDto $dto): CartDto
+    public function createOrUpdateCartWithItems(CreateOrUpdateCartWithItemsDto $dto, bool $checkLimits = true): CartDto
     {
-        return app(CreateOrUpdateCartWithItemsAction::class)->execute($dto);
+        return app(CreateOrUpdateCartWithItemsAction::class)->execute($dto, $checkLimits);
     }
 
     public function addOrUpdateCart(AddOrUpdateToCartDto $dto): CartDto
