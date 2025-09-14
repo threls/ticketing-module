@@ -23,14 +23,16 @@ class CreateBookingAction
         protected readonly CheckTicketDependencyAndLimitAction $checkTicketDependencyAndLimitAction,
     ) {}
 
-    public function execute(CreateBookingDto $dto)
+    public function execute(CreateBookingDto $dto, bool $checkLimits = true)
     {
         $this->dto = $dto;
         $this->cart = Cart::query()->findOrFail($this->dto->cartId);
 
-        DB::transaction(function () {
-            $this->checkTicketDependencyAndLimit()
-                ->createBooking()
+        DB::transaction(function () use ($checkLimits) {
+            if ($checkLimits){
+                $this->checkTicketDependencyAndLimit();
+            }
+            $this->createBooking()
                 ->createBookingClient()
                 ->createBookingItems()
                 ->updateBookingTotal()

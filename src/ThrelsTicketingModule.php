@@ -103,9 +103,9 @@ class ThrelsTicketingModule
         app(DeleteCartAction::class)->execute($cartId);
     }
 
-    public function createBooking(CreateBookingDto $dto): Booking
+    public function createBooking(CreateBookingDto $dto, bool $checkLimits = true): Booking
     {
-        return app(CreateBookingAction::class)->execute($dto);
+        return app(CreateBookingAction::class)->execute($dto, $checkLimits);
     }
 
     public function updateBookingStatus(Booking $booking, BookingStatusEnum $bookingStatus): void

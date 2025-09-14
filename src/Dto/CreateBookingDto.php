@@ -16,7 +16,7 @@ class CreateBookingDto extends Data
         public ?int $eventId,
         public BookingClientDto $bookingClient,
         public ?int $userId,
-        public Carbon $date,
+        public ?Carbon $date,
         public ?string $time,
         public ?int $amount,
         public ?string $currency,
