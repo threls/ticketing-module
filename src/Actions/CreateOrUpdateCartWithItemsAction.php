@@ -29,7 +29,7 @@ class CreateOrUpdateCartWithItemsAction
 
         DB::transaction(function () use ($checkLimits) {
             $this->getOrCreateCart();
-            if ($checkLimits){
+            if ($checkLimits) {
                 $this->checkTicketDependencyAndLimit();
             }
             $this->createCartItems();
