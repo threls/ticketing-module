@@ -29,7 +29,7 @@ class CreateBookingAction
         $this->cart = Cart::query()->findOrFail($this->dto->cartId);
 
         DB::transaction(function () use ($checkLimits) {
-            if ($checkLimits){
+            if ($checkLimits) {
                 $this->checkTicketDependencyAndLimit();
             }
             $this->createBooking()
