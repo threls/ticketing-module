@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::table('bookings', function (Blueprint $table) {
             $table->string('booking_type')->nullable();
-            $table->string('payment_type')->nullable();
+            $table->string('payment_method')->nullable();
         });
     }
 
@@ -17,7 +17,7 @@ return new class extends Migration {
     {
         Schema::table('bookings', function (Blueprint $table) {
             $table->dropColumn('booking_type');
-            $table->dropColumn('payment_type');
+            $table->dropColumn('payment_method');
         });
     }
 };

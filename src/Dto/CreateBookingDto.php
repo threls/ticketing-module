@@ -22,5 +22,7 @@ class CreateBookingDto extends Data
         public ?string $currency,
         public ?int $vatAmount,
         public BookingStatusEnum $status,
+        public ?string $bookingType,
+        public ?string $paymentMethod,
     ) {}
 }
