@@ -27,6 +27,7 @@ class GenerateBookingQRCodesAction
 
             $bookingTicket = $item->bookingTickets()->create([
                 'ticket_id' => $item->ticket_id,
+                'ticket_type' => $item->ticket_type,
                 'ticket_number' => strtoupper(uniqid($item->ticket_id)),
                 'booking_id' => $item->booking_id,
             ]);

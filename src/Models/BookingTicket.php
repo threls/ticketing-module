@@ -4,6 +4,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
@@ -29,9 +30,9 @@ class BookingTicket extends Model implements HasMedia
         return $this->belongsTo(TicketingModelResolverManager::getModelClass('booking'));
     }
 
-    public function ticket(): BelongsTo
+    public function ticket(): MorphTo
     {
-        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
+        return $this->morphTo();
     }
 
     public function bookingItem(): BelongsTo

@@ -42,6 +42,8 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
                 'add_discount_columns_to_bookings_table',
                 'add_event_id_to_bookings_table',
                 'add_additional_columns_to_bookings_table',
+                'add_morph_to_booking_tickets_table',
+                'add_ticket_type_to_booking_items_table',
             ])
             ->hasCommand(ThrelsTicketingModuleCommand::class);
     }

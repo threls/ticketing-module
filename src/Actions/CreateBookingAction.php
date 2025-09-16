@@ -96,6 +96,7 @@ class CreateBookingAction
             $this->booking->items()->create([
                 'event_id' => $itemable->event->id,
                 'ticket_id' => $itemable->id,
+                'ticket_type' => get_class($itemable),
                 'qty' => $item->quantity,
                 'amount' => $item->discounted_price->getMinorAmount()->toInt(),
                 'amount_currency' => $itemable->price_currency,
