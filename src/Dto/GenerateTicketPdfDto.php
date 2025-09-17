@@ -4,9 +4,9 @@ namespace Threls\ThrelsTicketingModule\Dto;
 
 use Spatie\LaravelData\Data;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Threls\ThrelsTicketingModule\Contracts\Cartable;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Threls\ThrelsTicketingModule\Models\BookingItem;
-use Threls\ThrelsTicketingModule\Models\Ticket;
 
 class GenerateTicketPdfDto extends Data
 {
@@ -14,7 +14,7 @@ class GenerateTicketPdfDto extends Data
         public string $eventName,
         public Booking $booking,
         public string $ticketNumber,
-        public Ticket $ticket,
+        public Cartable $ticket,
         public BookingItem $item,
         public ?Media $qrCode,
         public string $userName

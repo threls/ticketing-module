@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::table('booking_items', function (Blueprint $table) {
             $table->dropForeign('booking_items_ticket_id_foreign');
-            $table->string('ticket_type')->nullable()
+            $table->string('ticket_type')->after('ticket_id')->nullable();
         });
     }
 

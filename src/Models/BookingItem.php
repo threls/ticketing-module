@@ -5,6 +5,7 @@ namespace Threls\ThrelsTicketingModule\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
 use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
@@ -34,9 +35,9 @@ class BookingItem extends Model
         return $this->belongsTo(TicketingModelResolverManager::getModelClass('event'));
     }
 
-    public function ticket(): BelongsTo
+    public function ticket(): MorphTo
     {
-        return $this->belongsTo(TicketingModelResolverManager::getModelClass('ticket'));
+        return $this->morphTo();
     }
 
     public function bookingTickets(): HasMany

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Threls\ThrelsTicketingModule\Casts\MoneyCast;
+use Threls\ThrelsTicketingModule\Enums\BookingPaymentStatusEnum;
 use Threls\ThrelsTicketingModule\Enums\BookingStatusEnum;
 use Threls\ThrelsTicketingModule\TicketingModelResolverManager;
 
@@ -33,6 +34,7 @@ class Booking extends Model
             'vat_amount' => MoneyCast::class,
             'original_amount' => MoneyCast::class,
             'discount_amount' => MoneyCast::class,
+            'payment_status' => BookingPaymentStatusEnum::class,
         ];
     }
 
