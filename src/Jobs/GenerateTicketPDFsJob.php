@@ -42,8 +42,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
         });
 
         Bus::batch(
-            $this->booking->bookingTickets->map(fn ($ticket) =>
-            new GenerateSingleTicketPDFJob($this->booking,$ticket,$pdfBuilder)
+            $this->booking->bookingTickets->map(fn ($ticket) => new GenerateSingleTicketPDFJob($this->booking, $ticket, $pdfBuilder)
             )
         )->catch(function (Batch $batch, Throwable $e) {
             $this->fail(new BadRequestHttpException(throw new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.')));
