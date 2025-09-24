@@ -2,18 +2,19 @@
 
 namespace Threls\ThrelsTicketingModule\Jobs;
 
+use Illuminate\Bus\Batch;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Bus;
 use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Threls\ThrelsTicketingModule\Dto\GenerateTicketPdfDto;
 use Threls\ThrelsTicketingModule\Events\TicketPdfsGeneratedEvent;
 use Threls\ThrelsTicketingModule\Models\Booking;
-use Threls\ThrelsTicketingModule\Models\BookingTicket;
+use Throwable;
 
 class GenerateTicketPDFsJob implements ShouldQueue
 {
@@ -27,37 +28,28 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $this->fail(new BadRequestHttpException('There are no tickets generated for this booking.'));
         }
 
-        $this->booking->bookingTickets->each(function (BookingTicket $ticket) {
-
-            $dto = new GenerateTicketPdfDto(
-                eventName: $ticket->bookingItem->event->name,
-                booking: $this->booking,
-                ticketNumber: $ticket->ticket_number,
-                ticket: $ticket->ticket,
-                item: $ticket->bookingItem,
-                qrCode: $ticket->hasMedia(BookingTicket::MEDIA_QR_CODE) ? $ticket->getFirstMedia(BookingTicket::MEDIA_QR_CODE) : null,
-                userName: $this->booking->bookingClient->full_name
-            );
-
-            $pdf = Pdf::withBrowsershot(function (Browsershot $browsershot) {
-                if (! app()->environment('local')) {
-                    $browsershot
-//                        ->setEnvironmentOptions(["XDG_CONFIG_HOME" => "/tmp/google-chrome-for-testing", "XDG_CACHE_HOME" => "/tmp/google-chrome-for-testing"])
-                        ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
-                        ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
-                        ->setOption('executablePath', config('ticketing-module.chrome_path'))
-                        ->setOption('args', ['--no-sandbox'])                       // Disable sandbox for headless Chromium compatibility
-                        ->newHeadless();
-                } else {
-                    $browsershot->setNodeBinary('/opt/homebrew/bin/node');
-                }
-            })->view('ticketing-module::pdf.ticket-template', $dto->toArray());
-
-            $ticket->addMediaFromBase64($pdf->base64())->setFileName($ticket->ticket_number.'.pdf')->toMediaCollection(BookingTicket::MEDIA_TICKET);
-
+        $pdfBuilder = Pdf::withBrowsershot(function (Browsershot $browsershot) {
+            if (! app()->environment('local')) {
+                $browsershot
+                    ->setChromePath(config('ticketing-module.chrome_path')) // Use manually installed Chromium
+                    ->setCustomTempPath(storage_path('temp'))    // Custom temp directory for server compatibility
+                    ->setOption('executablePath', config('ticketing-module.chrome_path'))
+                    ->setOption('args', ['--no-sandbox'])                       // Disable sandbox for headless Chromium compatibility
+                    ->newHeadless();
+            } else {
+                $browsershot->setNodeBinary('/opt/homebrew/bin/node');
+            }
         });
 
-        TicketPdfsGeneratedEvent::dispatch($this->booking);
+        Bus::batch(
+            $this->booking->bookingTickets->map(fn ($ticket) =>
+            new GenerateSingleTicketPDFJob($this->booking,$ticket,$pdfBuilder)
+            )
+        )->catch(function (Batch $batch, Throwable $e) {
+            $this->fail(new BadRequestHttpException(throw new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.')));
+        })->then(function () {
+            TicketPdfsGeneratedEvent::dispatch($this->booking);
+        })->dispatch();
 
     }
 }
