@@ -37,7 +37,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
                     ->setOption('args', ['--no-sandbox'])                       // Disable sandbox for headless Chromium compatibility
                     ->newHeadless();
             } else {
-                $browsershot->setNodeBinary( config('ticketing-module.node_binary_path', '/opt/homebrew/bin/node'));
+                $browsershot->setNodeBinary(config('ticketing-module.node_binary_path', '/opt/homebrew/bin/node'));
             }
         });
 
