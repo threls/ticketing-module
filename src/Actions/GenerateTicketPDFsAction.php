@@ -10,6 +10,5 @@ class GenerateTicketPDFsAction
     public function execute(Booking $booking): void
     {
         GenerateTicketPDFsJob::dispatch($booking);
-
     }
 }
