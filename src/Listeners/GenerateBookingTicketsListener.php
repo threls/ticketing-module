@@ -4,8 +4,8 @@ namespace Threls\ThrelsTicketingModule\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Threls\ThrelsTicketingModule\Actions\GenerateBookingQRCodesAction;
+use Threls\ThrelsTicketingModule\Actions\GenerateTicketPDFsAction;
 use Threls\ThrelsTicketingModule\Events\BookingConfirmedEvent;
-use Threls\ThrelsTicketingModule\Jobs\GenerateTicketPDFsJob;
 
 class GenerateBookingTicketsListener implements ShouldQueue
 {
@@ -14,8 +14,7 @@ class GenerateBookingTicketsListener implements ShouldQueue
     public function handle(BookingConfirmedEvent $event): void
     {
         app(GenerateBookingQRCodesAction::class)->execute($event->booking);
-
-        GenerateTicketPDFsJob::dispatch($event->booking->fresh());
+        app(GenerateTicketPDFsAction::class)->execute($event->booking);
 
     }
 }

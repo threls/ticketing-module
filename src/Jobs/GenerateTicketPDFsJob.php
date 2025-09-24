@@ -16,6 +16,7 @@ use Threls\ThrelsTicketingModule\Events\TicketPdfsGeneratedEvent;
 use Threls\ThrelsTicketingModule\Models\Booking;
 use Throwable;
 
+/** @deprecated  */
 class GenerateTicketPDFsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -47,7 +48,7 @@ class GenerateTicketPDFsJob implements ShouldQueue
             $this->booking->bookingTickets->map(fn ($ticket) => new GenerateSingleTicketPDFJob($this->booking, $ticket, $pdfBuilder)
             )
         )->catch(function (Batch $batch, Throwable $e) {
-            $this->fail(new BadRequestHttpException(new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.')));
+            $this->fail(new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.'));
         })->then(function () {
             TicketPdfsGeneratedEvent::dispatch($this->booking);
         })->dispatch();
