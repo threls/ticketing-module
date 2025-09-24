@@ -15,10 +15,10 @@ class GenerateTicketPDFsAction
     public function execute(Booking $booking): void
     {
         Bus::batch(
-            $booking->bookingTickets->map(fn($ticket) => new GenerateSingleTicketPDFJob($booking, $ticket)
+            $booking->bookingTickets->map(fn ($ticket) => new GenerateSingleTicketPDFJob($booking, $ticket)
             )
         )->catch(function (Batch $batch, Throwable $e) {
-            throw new BadRequestHttpException('Batch with id ' . $batch->id . ' did not generate tickets PDFs.');
+            throw new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.');
         })->then(function () use ($booking) {
             TicketPdfsGeneratedEvent::dispatch($booking);
         })->dispatch();
