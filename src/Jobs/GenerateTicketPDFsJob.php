@@ -37,16 +37,18 @@ class GenerateTicketPDFsJob implements ShouldQueue
                     ->setOption('args', ['--no-sandbox'])                       // Disable sandbox for headless Chromium compatibility
                     ->newHeadless();
             } else {
-                $browsershot->setNodeBinary('/opt/homebrew/bin/node');
+                $browsershot->setNodeBinary( config('ticketing-module.node_binary_path', '/opt/homebrew/bin/node'));
             }
         });
+
+        $this->booking->load('bookingTickets.bookingItem.event', 'bookingTickets.ticket', 'bookingClient');
 
         Bus::batch(
             $this->booking->bookingTickets->map(fn ($ticket) =>
             new GenerateSingleTicketPDFJob($this->booking,$ticket,$pdfBuilder)
             )
         )->catch(function (Batch $batch, Throwable $e) {
-            $this->fail(new BadRequestHttpException(throw new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.')));
+            $this->fail(new BadRequestHttpException(new BadRequestHttpException('Batch with id '.$batch->id.' did not generate tickets PDFs.')));
         })->then(function () {
             TicketPdfsGeneratedEvent::dispatch($this->booking);
         })->dispatch();

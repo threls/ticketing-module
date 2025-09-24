@@ -23,6 +23,8 @@ return [
 
     'chrome_path' => '/usr/bin/google-chrome',
 
+    'node_binary_path' => '/opt/homebrew/bin/node',
+
     'models' => [
         'ticket' => Ticket::class,
         'ticketRestriction' => TicketRestriction::class,
