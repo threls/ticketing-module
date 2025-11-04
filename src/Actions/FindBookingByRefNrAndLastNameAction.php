@@ -20,9 +20,9 @@ class FindBookingByRefNrAndLastNameAction
         }
 
         return Booking::with('bookingClient')
-            ->where('reference_nr', 'LIKE', '%' . $referenceNr . '%')
+            ->where('reference_nr', 'LIKE', '%'.$referenceNr.'%')
             ->whereHas('bookingClient', function ($query) use ($lastName) {
-                $query->where('last_name', 'LIKE', '%' . $lastName . '%');
+                $query->where('last_name', 'LIKE', '%'.$lastName.'%');
             })
             ->firstOrFail();
     }
