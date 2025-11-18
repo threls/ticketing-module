@@ -15,7 +15,7 @@ use Threls\ThrelsTicketingModule\Models\BookingTicket;
 
 class GenerateSingleTicketPDFJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, Batchable;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable;
 
     public function __construct(public readonly Booking $booking, public readonly BookingTicket $ticket) {}
 
