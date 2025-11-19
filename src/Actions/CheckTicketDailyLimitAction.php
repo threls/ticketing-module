@@ -59,8 +59,7 @@ class CheckTicketDailyLimitAction
                     ->whereIn('status', [BookingStatusEnum::CONFIRMED, BookingStatusEnum::PENDING]);
             })
             ->where('ticket_id', $this->ticket->id)
-            ->selectRaw('SUM(pax_number * qty) as total')
-            ->value('total');
+            ->sum('qty');
 
         return $this;
     }
