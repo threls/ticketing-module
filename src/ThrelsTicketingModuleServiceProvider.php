@@ -2,7 +2,6 @@
 
 namespace Threls\ThrelsTicketingModule;
 
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Threls\ThrelsTicketingModule\Commands\ThrelsTicketingModuleCommand;
