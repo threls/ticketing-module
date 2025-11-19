@@ -56,10 +56,4 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
         );
         TicketingModelResolverManager::resolveModels();
     }
-
-    public function packageBooted()
-    {
-        Relation::morphMap(config('ticketing-module.models', TicketingModelResolverManager::$defaultModels));
-
-    }
 }
