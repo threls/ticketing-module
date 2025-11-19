@@ -47,6 +47,7 @@ class BookingConfirmationMail extends Mailable
 
                 return null;
             })
+            ->filter()
             ->all();
     }
 }
