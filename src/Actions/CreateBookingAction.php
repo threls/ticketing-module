@@ -98,6 +98,8 @@ class CreateBookingAction
                 'ticket_id' => $itemable->id,
                 'ticket_type' => get_class($itemable),
                 'qty' => $item->quantity,
+                'original_amount' => $item->original_price ? $item->original_price->getMinorAmount()->toInt() : $item->price,
+                'original_amount_currency' => $itemable->price_currency,
                 'amount' => $item->discounted_price->getMinorAmount()->toInt(),
                 'amount_currency' => $itemable->price_currency,
                 'total_amount' => $item->total->getMinorAmount()->toInt(),

@@ -44,6 +44,7 @@ class ThrelsTicketingModuleServiceProvider extends PackageServiceProvider
                 'add_morph_to_booking_tickets_table',
                 'add_ticket_type_to_booking_items_table',
                 'add_payment_status_to_bookings_table',
+                'add_original_price_to_booking_items'
             ])
             ->hasCommand(ThrelsTicketingModuleCommand::class);
     }

@@ -19,6 +19,7 @@ class BookingItem extends Model
     protected function casts(): array
     {
         return [
+            'original_amount' => MoneyCast::class,
             'amount' => MoneyCast::class,
             'total_amount' => MoneyCast::class,
             'vat_amount' => MoneyCast::class,

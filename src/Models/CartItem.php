@@ -6,6 +6,7 @@ use Brick\Money\Money;
 
 /**
  * @property Money|null $total
+ * @property Money|null $original_price
  * @property Money|null $price
  * @property Money|null $discounted_price
  * @property Money|null $vat
@@ -16,6 +17,12 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
     public function getTotalAttribute(): Money
     {
         return Money::ofMinor($this->getOption('total'), $this->getOption('total_currency'));
+
+    }
+
+    public function getOriginalPriceAttribute(): Money
+    {
+        return Money::ofMinor($this->getOption('original_price'), $this->getOption('original_price_currency'));
 
     }
 
