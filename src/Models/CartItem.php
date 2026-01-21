@@ -20,9 +20,9 @@ class CartItem extends \Binafy\LaravelCart\Models\CartItem
 
     }
 
-    public function getOriginalPriceAttribute(): Money
+    public function getOriginalPriceAttribute(): ?Money
     {
-        return Money::ofMinor($this->getOption('original_price'), $this->getOption('original_price_currency'));
+        return $this->getOption('original_price') ? Money::ofMinor($this->getOption('original_price'), $this->getOption('original_price_currency')) : null;
 
     }
 
