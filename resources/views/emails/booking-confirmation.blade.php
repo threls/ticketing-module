@@ -1,3 +1,4 @@
+{{-- Published from threls/ticketing-module. --}}
 @component('mail::message')
 # Booking Confirmation
 

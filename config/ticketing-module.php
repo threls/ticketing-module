@@ -1,5 +1,7 @@
 <?php
 
+// Published from threls/ticketing-module.
+
 // config for Threls/ThrelsTicketingModule
 use Binafy\LaravelCart\Models\CartItem;
 use Threls\ThrelsTicketingModule\Models\Booking;
