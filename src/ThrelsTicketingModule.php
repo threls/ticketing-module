@@ -135,7 +135,7 @@ class ThrelsTicketingModule
 
     public function generateTicketPdfs(Booking $booking): void
     {
-        app(GenerateTicketPdfsAction::class)->execute($booking);
+        app(GenerateTicketPDFsAction::class)->execute($booking);
     }
 
     public function findBookingByRefAndLastName(string $ref, string $lastName): Booking
